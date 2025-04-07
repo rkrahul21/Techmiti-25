@@ -1,4 +1,5 @@
 import React from 'react'
+//kjjh
 
 function App() {
     const events = ["RoboRace","Dangal","Quiz","Codingo","Hackathon","TechnoTalks","Workshops","Treasure Hunt","Gaming","Web Development","App Development","AI/ML"]
@@ -7,6 +8,7 @@ function App() {
       <div className='bg-blue-900 text-white flex flex-col items-center justify-center h-screen'>
         <h1>TECHMIT'25</h1>
         <h3>Coming Soon</h3>
+        <h3>Get Ready</h3>
       </div>
 
       <div>
