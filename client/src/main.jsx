@@ -4,13 +4,15 @@ import './index.css'
 import App from './App.jsx'
 import React from 'react'
 import Navbar from './components/Navbar.jsx'
-import { BrowserRouter } from 'react-router-dom'
+import { BrowserRouter, Route } from 'react-router-dom'
+import { Routes } from 'react-router-dom'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <BrowserRouter>
       <Navbar />
-    <App />
+      <App/>
+       
     </BrowserRouter>
   </StrictMode>,
 )
