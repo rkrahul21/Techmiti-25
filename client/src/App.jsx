@@ -1,4 +1,8 @@
 import React from 'react'
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Admin from "./pages/Admin";
+import AdminLogin from "./pages/AdminLogin";
+
 
 function App() {
   const events = [
@@ -17,7 +21,15 @@ function App() {
   ];
   return (
     <>
-      <div className="bg-blue-900 text-white flex flex-col items-center justify-center h-screen">
+      <Router>
+
+        <Routes>
+          <Route path="/" element={""} />
+          <Route path="/admin-login" element={<AdminLogin />} />
+        <Route path="/admin" element={<Admin />} />
+      </Routes>
+    </Router>
+      {/* <div className="bg-blue-900 text-white flex flex-col items-center justify-center h-screen">
         <h1>TECHMIT'25</h1>
         <h3>Coming Soon</h3>
       </div>
@@ -33,7 +45,7 @@ function App() {
             </h1>
           </div>
         ))}
-      </div>
+      </div> */}
     </>
   );
 }
