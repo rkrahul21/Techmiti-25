@@ -5,7 +5,6 @@ import {Link} from 'react-router-dom'
 import { navbarData } from '../constant/navbarData'
 import { FaUserCircle } from "react-icons/fa";
 import { TfiMenuAlt } from "react-icons/tfi";
-import MobileNav from './MobileNav';
 
 function Navbar() {
 
