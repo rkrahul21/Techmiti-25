@@ -10,10 +10,13 @@ function App() {
 
   return (
     <>
-      <div className='bg-blue-900 text-white flex flex-col items-center justify-center h-screen'>
+      <div className=' text-white flex flex-col items-center justify-center h-screen'>
         <h1>TECHMIT'25</h1>
-        <h3>Coming Soon</h3>
-        <Countdown />
+        <h3>Coming Soon</h3>        
+      </div>
+      <div>
+     
+      <Countdown />
       </div>
 
       <div>

@@ -37,21 +37,24 @@ const Countdown = () => {
   }, []);
 
   return (
-    <div className="relative h-screen overflow-hidden text-center flex flex-col justify-center items-center">
+    <div className="relative w-full h-screen overflow-hidden text-center flex flex-col justify-center items-center">
 
       {/* Background Video */}
       <video
         ref={videoRef}
-        className="absolute top-0 left-0 w-full h-full object-cover z-[-1]"
+        className="absolute top-0 left-0  h-full object-cover z-0 w-screen "
         autoPlay
         loop
         muted
         playsInline
         onCanPlayThrough={() => setVideoLoaded(true)}
+        
       >
         <source src="/8ef34bf2.mp4" type="video/mp4" />
         Your browser does not support the video tag.
       </video>
+
+
 
       {/* Preloader */}
       {!videoLoaded && (
