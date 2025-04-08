@@ -1,4 +1,5 @@
 import React from 'react'
+import AboutUs from './components/sections/AboutUs';
 
 function App() {
   const events = [
@@ -34,6 +35,8 @@ function App() {
           </div>
         ))}
       </div>
+
+        <AboutUs  />
     </>
   );
 }
