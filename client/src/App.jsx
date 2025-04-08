@@ -6,30 +6,30 @@ import AdminLogin from "./pages/AdminLogin";
 
 
 function App() {
-  const events = [
-    "RoboRace",
-    "Dangal",
-    "Quiz",
-    "Codingo",
-    "Hackathon",
-    "TechnoTalks",
-    "Workshops",
-    "Treasure Hunt",
-    "Gaming",
-    "Web Development",
-    "App Development",
-    "AI/ML",
-  ];
+  // const events = [
+  //   "RoboRace",
+  //   "Dangal",
+  //   "Quiz",
+  //   "Codingo",
+  //   "Hackathon",
+  //   "TechnoTalks",
+  //   "Workshops",
+  //   "Treasure Hunt",
+  //   "Gaming",
+  //   "Web Development",
+  //   "App Development",
+  //   "AI/ML",
+  // ];
   return (
     <>
-      <Router>
+     
 
         <Routes>
           <Route path="/" element={""} />
           <Route path="/admin-login" element={<AdminLogin />} />
         <Route path="/admin" element={<Admin />} />
       </Routes>
-    </Router>
+    
       {/* <div className="bg-blue-900 text-white flex flex-col items-center justify-center h-screen">
         <h1>TECHMIT'25</h1>
         <h3>Coming Soon</h3>
