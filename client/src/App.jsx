@@ -1,4 +1,5 @@
 import React from 'react'
+import Countdown from './components/Countdown';
 import AboutUs from './components/sections/AboutUs';
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Admin from "./pages/Admin";
