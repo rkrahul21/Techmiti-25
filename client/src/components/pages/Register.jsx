@@ -2,7 +2,6 @@
 import React from 'react'
 import { useState } from 'react'
 import { branchName, collegeName, batchCode, tshirtSizeValue, knowAbout } from '@/constant/collegeData';
-import { Form, Button, Row, Col, InputGroup } from "react-bootstrap";
 import MessageBox from '../sections/MessageBox';
 
 
@@ -214,11 +213,11 @@ function Register() {
         <div className='flex flex-col md:flex-row items-start gap-4 py-4'>
           <div className='flex flex-col items-start justify-center '>
             <label htmlFor="password">Password*</label>
-            <input type="text" required placeholder='Set Your Password' className=' bg-white p-1 rounded-sm w-[200px]' onChange={(e)=> setPassword(e.target.value)}/>
+            <input type="password" required placeholder='Set Your Password' className=' bg-white p-1 rounded-sm w-[200px]' onChange={(e)=> setPassword(e.target.value)}/>
           </div>
           <div className='flex flex-col items-start justify-center '>
             <label htmlFor="confirm password">Confirm Password*</label>
-            <input type="text" required placeholder='Confirm Password' className=' bg-white p-1 rounded-sm w-[200px]' onChange={(e)=> setConfirmPass(e.target.value)}/>
+            <input type="password" required placeholder='Confirm Password' className=' bg-white p-1 rounded-sm w-[200px]' onChange={(e)=> setConfirmPass(e.target.value)}/>
           </div>
 
         </div>
@@ -228,7 +227,7 @@ function Register() {
           <div className='flex flex-col items-start justify-center '>
             <label htmlFor="mobilenumber">Mobile Number*</label>
             <div className='flex flex-row items-center justify-center '><p className='bg-slate-600/30 text-md  p-1 rounded-sm'>+91</p>
-            <input type="number" required placeholder='Mobile Number' className=' bg-white p-1 rounded-sm w-[170px] ' />
+            <input type="number" required placeholder='Mobile Number' className=' bg-white p-1 rounded-sm w-[170px] ' onChange={(e)=> setMobile(e.target.value)} />
 
             </div>
           </div>
@@ -320,11 +319,11 @@ function Register() {
       <div className='flex flex-col  items-start gap-4 py-4'>
         <p>Payment Method*</p>
             <div>
-            <input type="radio" id="ca" name="ca" value = "ca" onChange={onPaymentModeChange} required checked={paymentMode==="ca"}/>
+            <input type="radio" id="ca" name="ca" value = "ca" onChange={onPaymentModeChange}  checked={paymentMode==="ca"}/>
             <label htmlFor="ca">Through Campus Ambassador</label>
             </div>
             <div>
-            <input type="radio" id="bank" name="bank" value = "bank" required checked={paymentMode==="bank"} onChange={onPaymentModeChange}/>
+            <input type="radio" id="bank" name="bank" value = "bank"  checked={paymentMode==="bank"} onChange={onPaymentModeChange}/>
             <label htmlFor="bank">Through Bank Account</label>
             </div>
       </div>
@@ -381,7 +380,7 @@ function Register() {
         </div>)}
 
 
-      <button type="submit" id="regSubmit" disabled={!allFill()} className='p-2 bg-blue-600 text-white rounded-md my-4'> Register</button>
+      <button type="submit" id="regSubmit"  className='p-2 bg-blue-600 text-white rounded-md my-4'> Register</button>
       </div>
         </form>
     </div>

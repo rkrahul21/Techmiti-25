@@ -1,7 +1,7 @@
-import React, { useEffect, useState, useRef } from 'react';
-import videoSrc from '/88fcbfc0.mp4';
+// import React, { useEffect, useState, useRef } from 'react';
+// import videoSrc from '/88fcbfc0.mp4';
 
-const Countdown = () => {
+const LandingPage = () => {
   return (
     <>
       <div className="bg-blue-900 text-white flex flex-col items-center justify-center h-screen">
@@ -11,11 +11,11 @@ const Countdown = () => {
       </div>
 
       <div>
-        {events.map((event, index) => (
+        {/* {events.map((event, index) => (
           <div key={index} className='bg-blue-900 text-white flex flex-col items-center justify-center'>
             <h1 className='bg-yellow-500 m-2 p-2 rounded-md shadow-lg'>{event}</h1>
           </div>
-        ))}
+        ))} */}
       </div>
     </>
   );
