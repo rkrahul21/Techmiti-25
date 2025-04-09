@@ -3,6 +3,7 @@ import AboutUs from './components/sections/AboutUs';
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Admin from "./pages/Admin";
 import AdminLogin from "./pages/AdminLogin";
+import Register from './components/pages/Register';
 
 
 function App() {
@@ -27,6 +28,7 @@ function App() {
         <Routes>
           <Route path="/" element={<AboutUs/>} />
           <Route path="/admin-login" element={<AdminLogin />} />
+          <Route path="/register" element={<Register />} />
         <Route path="/admin" element={<Admin />} />
       </Routes>
     
