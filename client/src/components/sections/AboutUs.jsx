@@ -108,7 +108,7 @@ const ContentCard = styled.div`
   border: 1px solid rgba(255, 255, 255, 0.1);
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
   position: relative;
-  right: 70px;
+
   overflow: hidden;
 
   &::before {
@@ -160,7 +160,6 @@ const ImageContainer = styled.div`
   flex: 1;
   max-width: 480px;
   position: relative;
-  right: 80px;
 
   &::before {
     content: "";

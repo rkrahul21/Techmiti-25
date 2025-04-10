@@ -1,67 +1,323 @@
 import React from "react";
 import { FaLinkedin, FaInstagram, FaFacebook } from "react-icons/fa";
+import styled from "styled-components";
 import logo from "../assets/logo.jpg";
+
+const VideoBackground = styled.video`
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  min-width: 100%;
+  min-height: 100%;
+  width: auto;
+  height: auto;
+  z-index: -1;
+  object-fit: cover;
+  opacity: 0.7;
+`;
+
+const FooterContainer = styled.footer`
+  position: relative;
+  min-height: 30vh;
+  width: 100%;
+  padding: 2rem 1rem;
+  overflow: hidden;
+  background: transparent;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+
+  @media (max-width: 768px) {
+    min-height: 25vh;
+    padding: 1.5rem 1rem;
+  }
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0.95) 0%,
+      rgba(0, 0, 0, 0.85) 100%
+    );
+    pointer-events: none;
+    z-index: 0;
+  }
+`;
+
+const Content = styled.div`
+  position: relative;
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+  z-index: 1;
+
+  @media (max-width: 768px) {
+    gap: 1rem;
+  }
+`;
+
+const LogoContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+`;
+
+const LogoWrapper = styled.div`
+  padding: 4px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+  position: relative;
+
+  &::before {
+    content: "";
+    position: absolute;
+    inset: -2px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+    opacity: 0.5;
+    filter: blur(4px);
+  }
+`;
+
+const LogoInner = styled.div`
+  background: rgba(0, 0, 0, 0.8);
+  padding: 4px;
+  border-radius: 50%;
+`;
+
+const Logo = styled.img`
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+
+  @media (max-width: 768px) {
+    width: 50px;
+    height: 50px;
+  }
+
+  &:hover {
+    transform: scale(1.1);
+  }
+`;
+
+const Title = styled.h1`
+  font-size: 2rem;
+  font-family: "Orbitron", sans-serif;
+  background: linear-gradient(120deg, #4facfe, #00f2fe);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 0 20px rgba(79, 172, 254, 0.3);
+
+  @media (max-width: 768px) {
+    font-size: 1.75rem;
+  }
+`;
+
+const Navigation = styled.nav`
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1.5rem;
+  margin: 0.75rem 0;
+
+  @media (max-width: 768px) {
+    gap: 1rem;
+    margin: 0.5rem 0;
+  }
+`;
+
+const NavLink = styled.a`
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  position: relative;
+  font-family: "Orbitron", sans-serif;
+
+  @media (max-width: 768px) {
+    font-size: 0.8rem;
+  }
+
+  &::after {
+    content: "";
+    position: absolute;
+    bottom: -3px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: linear-gradient(90deg, #4facfe, #00f2fe);
+    transition: width 0.3s ease;
+  }
+
+  &:hover {
+    color: #00f2fe;
+    transform: translateY(-2px);
+
+    &::after {
+      width: 100%;
+    }
+  }
+`;
+
+const SocialLinks = styled.div`
+  display: flex;
+  gap: 2rem;
+  margin: 0.75rem 0;
+
+  @media (max-width: 768px) {
+    gap: 1.5rem;
+    margin: 0.5rem 0;
+  }
+`;
+
+const SocialIcon = styled.a`
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 1.25rem;
+  transition: all 0.3s ease;
+  position: relative;
+
+  @media (max-width: 768px) {
+    font-size: 1.1rem;
+  }
+
+  &::before {
+    content: "";
+    position: absolute;
+    inset: -6px;
+    background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+    border-radius: 50%;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  &:hover {
+    color: #fff;
+    transform: translateY(-3px);
+
+    &::before {
+      opacity: 0.2;
+    }
+  }
+`;
+
+const Divider = styled.div`
+  width: 50%;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    #4facfe 20%,
+    #00f2fe 50%,
+    #4facfe 80%,
+    transparent 100%
+  );
+  margin: 0.75rem 0;
+  position: relative;
+
+  @media (max-width: 768px) {
+    width: 70%;
+    margin: 0.5rem 0;
+  }
+
+  &::before {
+    content: "";
+    position: absolute;
+    inset: -1px;
+    background: inherit;
+    filter: blur(4px);
+    opacity: 0.5;
+  }
+`;
+
+const Copyright = styled.div`
+  color: rgba(255, 255, 255, 0.6);
+  text-align: center;
+  font-size: 0.8rem;
+
+  @media (max-width: 768px) {
+    font-size: 0.75rem;
+  }
+
+  span {
+    color: #00f2fe;
+  }
+
+  .team {
+    color: #fff;
+    font-weight: 600;
+  }
+`;
 
 function Footer() {
   const currentYear = new Date().getFullYear();
+  const navLinks = [
+    "HOME",
+    "EVENTS",
+    "GLIMPSE",
+    "BROCHURE",
+    "CA RULEBOOK",
+    "REGISTER",
+  ];
 
   return (
-    <footer className="relative bg-gradient-to-br from-gray-900 via-black to-gray-800 text-white py-14 px-4 overflow-hidden shadow-inner border-t border-gray-700">
-      
-      {/* 🔵 Glowing Background (Static) */}
-      <div className="absolute -top-10 left-0 w-full h-80 bg-gradient-to-r from-cyan-400 via-blue-500 to-blue-700 opacity-10 blur-3xl"></div>
+    <FooterContainer>
+      <VideoBackground autoPlay muted loop playsInline>
+        <source src="/bg-video.mp4" type="video/mp4" />
+      </VideoBackground>
 
-      <div className="relative max-w-7xl mx-auto flex flex-col items-center text-center space-y-8 z-10">
+      <Content>
+        <LogoContainer>
+          <LogoWrapper>
+            <LogoInner>
+              <Logo src={logo} alt="TechMITi'25 Logo" />
+            </LogoInner>
+          </LogoWrapper>
+          <Title>TechMITi'25</Title>
+        </LogoContainer>
 
-        {/* 🔹 Logo */}
-        <div className="flex flex-col items-center">
-          <div className="p-1 rounded-full bg-gradient-to-tr from-cyan-500 to-blue-600">
-            <div className="rounded-full bg-black p-1">
-              <img
-                src={logo}
-                alt="TechMITi'25 Logo"
-                className="h-24 w-24 rounded-full object-cover shadow-xl hover:scale-110 transition-transform duration-300"
-              />
-            </div>
-          </div>
-          <h1 className="text-4xl font-extrabold text-cyan-400 mt-4 drop-shadow-lg">
-            TechMITi'25
-          </h1>
-        </div>
-
-        {/* 🔗 Navigation */}
-        <nav className="flex flex-wrap justify-center gap-8 text-lg font-semibold">
-          {["HOME", "EVENTS", "GLIMPSE", "BROCHURE", "CA RULEBOOK", "REGISTER"].map((link, i) => (
-            <a
+        <Navigation>
+          {navLinks.map((link, i) => (
+            <NavLink
               key={i}
-              href={`#${link.toLowerCase().replace(/\s/g, '-')}`}
-              className="text-gray-300 hover:text-cyan-300 hover:tracking-wider transition-all duration-300 transform hover:-translate-y-1"
+              href={`#${link.toLowerCase().replace(/\s/g, "-")}`}
             >
               {link}
-            </a>
+            </NavLink>
           ))}
-        </nav>
+        </Navigation>
 
-        {/* 📱 Social Icons */}
-        <div className="flex gap-8 text-2xl text-gray-300">
-          <a href="#" className="hover:text-cyan-300 hover:scale-125 transition duration-300"><FaInstagram /></a>
-          <a href="#" className="hover:text-blue-400 hover:scale-125 transition duration-300"><FaLinkedin /></a>
-          <a href="#" className="hover:text-blue-600 hover:scale-125 transition duration-300"><FaFacebook /></a>
-        </div>
+        <SocialLinks>
+          <SocialIcon href="#" aria-label="Instagram">
+            <FaInstagram />
+          </SocialIcon>
+          <SocialIcon href="#" aria-label="LinkedIn">
+            <FaLinkedin />
+          </SocialIcon>
+          <SocialIcon href="#" aria-label="Facebook">
+            <FaFacebook />
+          </SocialIcon>
+        </SocialLinks>
 
-        {/* ━ Divider */}
-        <div className="w-3/4 h-1 bg-gradient-to-r from-cyan-400 via-blue-500 to-blue-700 rounded-full my-4 shadow-md"></div>
+        <Divider />
 
-        {/* 📜 Footer Info */}
-        <div className="text-gray-400 text-sm space-y-1">
+        <Copyright>
           <p>© {currentYear} TechMITi'25. All rights reserved.</p>
           <p>
-            Made with <span className="text-cyan-400">♥</span> by{" "}
-            <span className="text-white font-semibold">Team MOXIE</span>
+            Made with <span>♥</span> by <span className="team">Team MOXIE</span>
           </p>
-        </div>
-      </div>
-    </footer>
+        </Copyright>
+      </Content>
+    </FooterContainer>
   );
 }
 
