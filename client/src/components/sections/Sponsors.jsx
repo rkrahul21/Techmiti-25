@@ -206,6 +206,9 @@ const Sponsors = () => {
             <SponsorCard>
               <img src="https://i.imgur.com/7mE2L8v.png" alt="Internshala" />
             </SponsorCard>
+            <SponsorCard>
+              <img src="https://i.imgur.com/7mE2L8v.png" alt="Internshala" />
+            </SponsorCard>
           </SponsorGrid>
         </Section>
       </ContentWrapper>
