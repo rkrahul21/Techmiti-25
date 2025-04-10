@@ -298,11 +298,17 @@ function Register() {
                 onChange={(e) => {
                   setGender(e.target.value);
                 }}
-                className="w-full px-4 py-2 bg-white/10 border border-white/20 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-white placeholder-white/50"
+                className="w-full px-4 py-2 bg-[#1a1a2e] border border-white/20 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-white"
               >
-                <option value="">Select</option>
-                <option value="male">Male</option>
-                <option value="female">Female</option>
+                <option value="" className="bg-[#1a1a2e] text-white">
+                  Select
+                </option>
+                <option value="male" className="bg-[#1a1a2e] text-white">
+                  Male
+                </option>
+                <option value="female" className="bg-[#1a1a2e] text-white">
+                  Female
+                </option>
               </select>
             </div>
             <div className="space-y-2">
@@ -317,14 +323,19 @@ function Register() {
                 id="college"
                 required
                 onChange={(e) => setCollege(e.target.value)}
-                className="w-full px-4 py-2 bg-white/10 border border-white/20 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-white placeholder-white/50"
+                className="w-full px-4 py-2 bg-[#1a1a2e] border border-white/20 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-white"
               >
-                <option value="">Select One</option>
+                <option value="" className="bg-[#1a1a2e] text-white">
+                  Select One
+                </option>
                 {collegeName
                   .sort((a, b) => a.college.localeCompare(b.college))
                   .map((item, index) => (
-                    <option key={index} value={`${item.value}`}>
-                      {" "}
+                    <option
+                      key={index}
+                      value={`${item.value}`}
+                      className="bg-[#1a1a2e] text-white"
+                    >
                       {item.college}
                     </option>
                   ))}
@@ -342,14 +353,19 @@ function Register() {
                 id="branch"
                 required
                 onChange={(e) => setBranch(e.target.value)}
-                className="w-full px-4 py-2 bg-white/10 border border-white/20 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-white placeholder-white/50"
+                className="w-full px-4 py-2 bg-[#1a1a2e] border border-white/20 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-white"
               >
-                <option value="">Select One</option>
+                <option value="" className="bg-[#1a1a2e] text-white">
+                  Select One
+                </option>
                 {branchName
                   .sort((a, b) => a.branch.localeCompare(b.branch))
                   .map((item, index) => (
-                    <option key={index} value={`${item.value}`}>
-                      {" "}
+                    <option
+                      key={index}
+                      value={`${item.value}`}
+                      className="bg-[#1a1a2e] text-white"
+                    >
                       {item.branch}
                     </option>
                   ))}
@@ -398,12 +414,17 @@ function Register() {
                 onChange={(e) => {
                   setBatch(e.target.value);
                 }}
-                className="w-full px-4 py-2 bg-white/10 border border-white/20 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-white placeholder-gray-400"
+                className="w-full px-4 py-2 bg-[#1a1a2e] border border-white/20 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-white"
               >
-                <option value="">Select One</option>
+                <option value="" className="bg-[#1a1a2e] text-white">
+                  Select One
+                </option>
                 {batchCode.map((item, index) => (
-                  <option key={index} value={`${item.value}`}>
-                    {" "}
+                  <option
+                    key={index}
+                    value={`${item.value}`}
+                    className="bg-[#1a1a2e] text-white"
+                  >
                     {item.batch}
                   </option>
                 ))}
@@ -421,12 +442,17 @@ function Register() {
                 id="tshirt"
                 required
                 onChange={(e) => setCollege(e.target.value)}
-                className="w-full px-4 py-2 bg-white/10 border border-white/20 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-white placeholder-gray-400"
+                className="w-full px-4 py-2 bg-[#1a1a2e] border border-white/20 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-white"
               >
-                <option value="">Select One</option>
+                <option value="" className="bg-[#1a1a2e] text-white">
+                  Select One
+                </option>
                 {tshirtSizeValue.map((item, index) => (
-                  <option key={index} value={`${item}`}>
-                    {" "}
+                  <option
+                    key={index}
+                    value={`${item}`}
+                    className="bg-[#1a1a2e] text-white"
+                  >
                     {item}
                   </option>
                 ))}
@@ -444,11 +470,17 @@ function Register() {
                 id="accommodation"
                 required
                 onChange={(e) => setIsAccommodation(e.target.value)}
-                className="w-full px-4 py-2 bg-white/10 border border-white/20 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-white placeholder-gray-400"
+                className="w-full px-4 py-2 bg-[#1a1a2e] border border-white/20 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-white"
               >
-                <option value="">Select One</option>
-                <option value="yes">Yes</option>
-                <option value="no">No</option>
+                <option value="" className="bg-[#1a1a2e] text-white">
+                  Select One
+                </option>
+                <option value="yes" className="bg-[#1a1a2e] text-white">
+                  Yes
+                </option>
+                <option value="no" className="bg-[#1a1a2e] text-white">
+                  No
+                </option>
               </select>
             </div>
           </div>
