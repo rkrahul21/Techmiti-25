@@ -108,7 +108,7 @@ export default function Navbar() {
               >
                 <div className="absolute inset-0 bg-gradient-to-r from-[#6a75f7]/20 via-[#00f2fe]/20 to-[#6a75f7]/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                 <span className="relative z-10 flex items-center gap-2">
-                  SIGN IN
+                  Register Now
                   <ArrowRight className="h-4 w-4 transform group-hover:translate-x-1 transition-transform" />
                 </span>
               </Button>
