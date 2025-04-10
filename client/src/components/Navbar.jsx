@@ -5,20 +5,20 @@ import { Button } from "./ui/button";
 import { cn } from "../lib/utils";
 
 const navItems = [
-  { name: "Home", href: "#home", icon: "🏠" },
-  { name: "About", href: "#about", icon: "ℹ️" },
-  { name: "Events", href: "#events", icon: "🎮" },
-  { name: "Schedule", href: "#timeline", icon: "📅" },
-  { name: "Brochure", href: "#brochure", icon: "📋" },
-  { name: "Gallery", href: "#gallery", icon: "📸" },
-  { name: "Sponsors", href: "#sponsors", icon: "🤝" },
-  { name: "Contact", href: "#contact", icon: "📞" },
+  { name: "Home", href: "/", icon: "🏠" },
+  { name: "Events", href: "/event", icon: "🎮" },
+  { name: "Schedule", href: "/schedule", icon: "📅" },
+  { name: "Brochure", href: "/brochure", icon: "📋" },
+  // { name: "Registration", href: "/register", icon: "📝" },
+  { name: "Gallery", href: "/gallery", icon: "📸" },
+  { name: "Sponsors", href: "/sponsors", icon: "🤝" },
+  // { name: "Contact", href: "#contact", icon: "📞" },
 ];
 
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const [activeLink, setActiveLink] = useState("#home");
+  const [activeLink, setActiveLink] = useState("/");
 
   useEffect(() => {
     const handleScroll = () => {
@@ -59,7 +59,7 @@ export default function Navbar() {
 
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16">
-          <a href="#home" className="flex items-center group">
+          <a href="/" className="flex items-center group">
             <div className="relative w-8 h-8">
               <Code2 className="h-6 w-6 text-[#00f2fe] absolute left-0 top-0 opacity-0 group-hover:opacity-100 transition-all duration-300 transform group-hover:scale-110 group-hover:rotate-12" />
               <Terminal className="h-6 w-6 text-[#6a75f7] group-hover:text-[#00f2fe] absolute left-0 top-0 transition-all duration-300 group-hover:opacity-0" />
@@ -84,7 +84,7 @@ export default function Navbar() {
                 key={item.name}
                 href={item.href}
                 className={cn(
-                  "px-6 py-2 text-sm font-medium transition-all duration-300 relative group",
+                  "px-6 py-2 text-md font-medium transition-all duration-300 relative group",
                   activeLink === item.href
                     ? "text-[#00f2fe]"
                     : "text-white/80 hover:text-[#00f2fe]"
@@ -108,7 +108,7 @@ export default function Navbar() {
               >
                 <div className="absolute inset-0 bg-gradient-to-r from-[#6a75f7]/20 via-[#00f2fe]/20 to-[#6a75f7]/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                 <span className="relative z-10 flex items-center gap-2">
-                  Register Now
+                  <a href="/register">Register Now</a>
                   <ArrowRight className="h-4 w-4 transform group-hover:translate-x-1 transition-transform" />
                 </span>
               </Button>
@@ -149,7 +149,7 @@ export default function Navbar() {
                   <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-gradient-to-r from-[#6a75f7]/20 via-[#00f2fe]/20 to-[#6a75f7]/20"></div>
                   <div className="px-6 py-3 relative z-10">
                     <span className="relative z-10 flex items-center justify-center gap-2 text-white group-hover:text-[#00f2fe] transition-colors">
-                      Register Now
+                      <a href="/register">Register Now</a>
                       <ArrowRight className="h-4 w-4 transform group-hover:translate-x-1 transition-transform" />
                     </span>
                   </div>
