@@ -19,9 +19,8 @@ function App() {
     <>
       <div className="bg-blue-900 text-white flex flex-col items-center justify-center h-screen">
         <h1>TECHMIT'25</h1>
-        <h3>Coming Soon adil</h3>
+        <h3>Coming Soon Adil</h3>
       </div>
-
       <div>
         {events.map((event, index) => (
           <div
