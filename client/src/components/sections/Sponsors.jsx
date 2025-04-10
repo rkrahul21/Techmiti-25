@@ -1,5 +1,5 @@
-import React from 'react';
-import styled from 'styled-components';
+import React from "react";
+import styled from "styled-components";
 
 const SponsorsContainer = styled.div`
   display: flex;
@@ -63,16 +63,20 @@ const Sponsors = () => {
     <SponsorsContainer>
       <Section>
         <h1>Title Sponsor</h1>
-        <ContImg src='https://i.imgur.com/d9pkeAd.png' alt='MITMAAI' />
+        <ContImg src="https://i.imgur.com/d9pkeAd.png" alt="MITMAAI" />
       </Section>
 
       <Section>
         <h1>Associate Sponsor</h1>
-        <a href='https://www.dmi.ac.in/' target='_blank' rel="noopener noreferrer">
+        <a
+          href="https://www.dmi.ac.in/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
           <EventSponsorImg
-            src='https://i.imgur.com/t1ESRta.jpg'
-            alt='DMI'
-            style={{ width: '500px', height: '300px', borderRadius: '5px' }}
+            src="https://i.imgur.com/t1ESRta.jpg"
+            alt="DMI"
+            style={{ width: "500px", height: "300px", borderRadius: "5px" }}
           />
         </a>
       </Section>
@@ -87,9 +91,18 @@ const Sponsors = () => {
       <Section>
         <h1>Event Sponsor</h1>
         <EventSponsors>
-          <EventSponsorImg src="https://i.imgur.com/qXJb2oi.jpg" alt="Synergy Classes" />
-          <EventSponsorImg src="https://i.imgur.com/ZbBqdNf.jpg" alt="Decathlon" />
-          <EventSponsorImg src="https://i.imgur.com/7mE2L8v.png" alt="Internshala" />
+          <EventSponsorImg
+            src="https://i.imgur.com/qXJb2oi.jpg"
+            alt="Synergy Classes"
+          />
+          <EventSponsorImg
+            src="https://i.imgur.com/ZbBqdNf.jpg"
+            alt="Decathlon"
+          />
+          <EventSponsorImg
+            src="https://i.imgur.com/7mE2L8v.png"
+            alt="Internshala"
+          />
         </EventSponsors>
       </Section>
     </SponsorsContainer>

@@ -3,7 +3,7 @@ import videoSrc from "./assets/88fcbfc0.mp4";
 import AboutUs from "./components/sections/AboutUs";
 import Countdown from "./components/Countdown";
 import Footer from "./components/Footer";
-import Sponsor from "./components/sections/Sponsor";
+import Sponsor from "./components/sections/Sponsors";
 
 function Home() {
   return (
