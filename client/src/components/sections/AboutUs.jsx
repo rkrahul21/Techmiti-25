@@ -41,7 +41,7 @@ const Section = styled.section`
     z-index: 0;
   }
 
-  @media (max-width: 48em) {
+  @media (max-width: 768px) {
     flex-direction: column;
   }
 `;
