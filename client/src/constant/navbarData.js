@@ -22,12 +22,18 @@ export const navbarData = [
     },
     {
         id:5,
+        title:"Register",
+        link:"/register"
+    },
+    {
+        id:6,
         title:"Gallery",
         link:"/gallery"
     },
     {
-        id:6,
-        title:"Sponsors",
-        link:"/sponsors"
+        id:7,
+        title:"Login",
+        link:"/login"
     },
+    
 ]
