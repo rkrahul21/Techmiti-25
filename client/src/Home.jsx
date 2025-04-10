@@ -1,5 +1,5 @@
 import React from "react";
-import videoSrc from "./assets/88fcbfc0.mp4";
+import videoSrc from "./assets/88ecbfcc.mp4";
 import AboutUs from "./components/sections/AboutUs";
 import Countdown from "./components/Countdown";
 import Footer from "./components/Footer";
