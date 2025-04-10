@@ -40,25 +40,25 @@ export default function CountdownTimer() {
   }, []);
 
   return (
-    <div className="w-full max-w-4xl mx-auto px-4 py-4 sm:py-6">
+    <div className="w-full max-w-3xl mx-auto px-3 py-2 sm:py-3">
       {/* Gradient Border Frame */}
       <div className="relative">
-        <div className="absolute -inset-[2px] bg-gradient-to-r from-techmiti-purple/60 via-techmiti-cyan/60 to-techmiti-purple/60 rounded-xl opacity-50"></div>
+        <div className="absolute -inset-[1px] bg-gradient-to-r from-techmiti-purple/60 via-techmiti-cyan/60 to-techmiti-purple/60 rounded-lg opacity-50"></div>
 
         {/* Main Content */}
-        <div className="relative bg-black/30 backdrop-blur-md rounded-xl p-3 sm:p-4 border border-white/10">
+        <div className="relative bg-black/30 backdrop-blur-md rounded-lg p-2 sm:p-3 border border-white/10">
           {/* Floating Elements */}
-          <div className="absolute inset-0 overflow-hidden rounded-xl">
-            <div className="absolute top-1/4 -left-4 w-16 h-16 bg-techmiti-purple/10 rounded-full blur-xl animate-pulse"></div>
-            <div className="absolute bottom-1/4 -right-4 w-16 h-16 bg-techmiti-cyan/10 rounded-full blur-xl animate-pulse delay-700"></div>
+          <div className="absolute inset-0 overflow-hidden rounded-lg">
+            <div className="absolute top-1/4 -left-3 w-12 h-12 bg-techmiti-purple/10 rounded-full blur-xl animate-pulse"></div>
+            <div className="absolute bottom-1/4 -right-3 w-12 h-12 bg-techmiti-cyan/10 rounded-full blur-xl animate-pulse delay-700"></div>
           </div>
 
           <div className="relative z-10">
-            <h2 className="text-lg sm:text-xl md:text-2xl font-bold text-center mb-3 sm:mb-4 text-white">
+            <h2 className="text-base sm:text-lg md:text-xl font-bold text-center mb-2 sm:mb-3 text-white">
               Event Starts In
             </h2>
 
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 sm:gap-3">
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-1.5 sm:gap-2">
               {[
                 { value: timeLeft.days, label: "DAYS" },
                 { value: timeLeft.hours, label: "HOURS" },
@@ -67,17 +67,17 @@ export default function CountdownTimer() {
               ].map((item, index) => (
                 <div key={index} className="relative group">
                   {/* Card Gradient Border - Balanced visibility */}
-                  <div className="absolute -inset-[1px] bg-gradient-to-r from-techmiti-purple/50 to-techmiti-cyan/50 rounded-lg opacity-40 group-hover:opacity-70 blur-[0.5px] transition-all duration-500"></div>
+                  <div className="absolute -inset-[1px] bg-gradient-to-r from-techmiti-purple/50 to-techmiti-cyan/50 rounded-md opacity-40 group-hover:opacity-70 blur-[0.5px] transition-all duration-500"></div>
 
                   {/* Card Content - Balanced visibility */}
-                  <div className="relative bg-black/40 backdrop-blur-sm rounded-lg p-2 sm:p-3 text-center transform transition-all duration-300 group-hover:scale-[1.02] border border-white/10 shadow-[0_0_10px_rgba(0,242,254,0.15)] group-hover:shadow-[0_0_15px_rgba(0,242,254,0.25)]">
+                  <div className="relative bg-black/40 backdrop-blur-sm rounded-md p-1.5 sm:p-2 text-center transform transition-all duration-300 group-hover:scale-[1.02] border border-white/10 shadow-[0_0_10px_rgba(0,242,254,0.15)] group-hover:shadow-[0_0_15px_rgba(0,242,254,0.25)]">
                     {/* Subtle glow effect behind the number */}
-                    <div className="absolute inset-0 bg-gradient-to-b from-techmiti-cyan/5 to-transparent rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                    <div className="absolute inset-0 bg-gradient-to-b from-techmiti-cyan/5 to-transparent rounded-md opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
 
-                    <div className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-techmiti-cyan/90 mb-0.5 sm:mb-1 drop-shadow-[0_0_3px_rgba(0,242,254,0.3)]">
+                    <div className="text-lg sm:text-xl md:text-2xl font-bold text-techmiti-cyan/90 mb-0.5 drop-shadow-[0_0_3px_rgba(0,242,254,0.3)]">
                       {String(item.value).padStart(2, "0")}
                     </div>
-                    <div className="text-[8px] sm:text-[10px] md:text-xs text-gray-200 uppercase tracking-wider font-medium">
+                    <div className="text-[7px] sm:text-[9px] md:text-xs text-gray-200 uppercase tracking-wider font-medium">
                       {item.label}
                     </div>
                   </div>
@@ -85,20 +85,20 @@ export default function CountdownTimer() {
               ))}
             </div>
 
-            <div className="text-center mt-3 sm:mt-4 text-gray-300 text-xs sm:text-sm">
+            <div className="text-center mt-2 sm:mt-3 text-gray-300 text-[10px] sm:text-xs">
               <p>Join us for an unforgettable experience at TECHMITI'25</p>
             </div>
 
             {/* Action Buttons */}
-            <div className="mt-4 sm:mt-6 flex flex-col sm:flex-row justify-center items-center gap-2 sm:gap-3 md:gap-4">
-              <Button className="w-full sm:w-auto text-xs sm:text-sm md:text-base lg:text-lg px-3 sm:px-4 md:px-6 lg:px-8 py-1.5 sm:py-2 md:py-3 lg:py-4 bg-gradient-to-r from-[#FF3CAC] via-[#784BA0] to-[#2B86C5] hover:from-[#2B86C5] hover:via-[#784BA0] hover:to-[#FF3CAC] shadow-lg hover:shadow-[#FF3CAC]/30 transition-all duration-500 transform hover:scale-105 relative group overflow-hidden rounded-xl border-2 border-transparent hover:border-white/20">
+            <div className="mt-3 sm:mt-4 flex flex-col sm:flex-row justify-center items-center gap-1.5 sm:gap-2 md:gap-3">
+              <Button className="w-full sm:w-auto text-[10px] sm:text-xs md:text-sm px-2 sm:px-3 md:px-4 py-1 sm:py-1.5 md:py-2 bg-gradient-to-r from-[#FF3CAC] via-[#784BA0] to-[#2B86C5] hover:from-[#2B86C5] hover:via-[#784BA0] hover:to-[#FF3CAC] shadow-lg hover:shadow-[#FF3CAC]/30 transition-all duration-500 transform hover:scale-105 relative group overflow-hidden rounded-lg border-2 border-transparent hover:border-white/20">
                 <span className="absolute inset-0 bg-gradient-to-r from-white/20 to-white/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></span>
                 <span className="absolute inset-0 bg-gradient-to-r from-[#FF3CAC]/20 to-[#2B86C5]/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></span>
                 <span className="relative z-10 flex items-center justify-center font-bold tracking-wide">
                   Explore All Events
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
-                    className="h-2 w-2 sm:h-3 sm:w-3 md:h-4 md:w-4 ml-1.5 transform group-hover:translate-x-2 transition-transform duration-500"
+                    className="h-1.5 w-1.5 sm:h-2 sm:w-2 md:h-3 md:w-3 ml-1 transform group-hover:translate-x-2 transition-transform duration-500"
                     fill="none"
                     viewBox="0 0 24 24"
                     stroke="currentColor"
@@ -114,7 +114,7 @@ export default function CountdownTimer() {
               </Button>
               <Button
                 variant="outline"
-                className="w-full sm:w-auto text-xs sm:text-sm md:text-base lg:text-lg px-3 sm:px-4 md:px-6 lg:px-8 py-1.5 sm:py-2 md:py-3 lg:py-4 border-2 border-[#00F5A0] text-[#00F5A0] hover:bg-[#00F5A0]/10 shadow-lg hover:shadow-[#00F5A0]/30 transition-all duration-500 transform hover:scale-105 relative group overflow-hidden rounded-xl hover:border-[#00F5A0]/80"
+                className="w-full sm:w-auto text-[10px] sm:text-xs md:text-sm px-2 sm:px-3 md:px-4 py-1 sm:py-1.5 md:py-2 border-2 border-[#00F5A0] text-[#00F5A0] hover:bg-[#00F5A0]/10 shadow-lg hover:shadow-[#00F5A0]/30 transition-all duration-500 transform hover:scale-105 relative group overflow-hidden rounded-lg hover:border-[#00F5A0]/80"
               >
                 <span className="absolute inset-0 bg-gradient-to-r from-[#00F5A0]/10 to-[#00D9F5]/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></span>
                 <span className="absolute inset-0 bg-gradient-to-r from-[#00F5A0]/5 to-[#00D9F5]/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></span>
@@ -122,7 +122,7 @@ export default function CountdownTimer() {
                   Register Now
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
-                    className="h-2 w-2 sm:h-3 sm:w-3 md:h-4 md:w-4 ml-1.5 transform group-hover:translate-x-2 transition-transform duration-500"
+                    className="h-1.5 w-1.5 sm:h-2 sm:w-2 md:h-3 md:w-3 ml-1 transform group-hover:translate-x-2 transition-transform duration-500"
                     fill="none"
                     viewBox="0 0 24 24"
                     stroke="currentColor"
@@ -139,7 +139,7 @@ export default function CountdownTimer() {
             </div>
 
             {/* Down Arrow - Visible only on small devices */}
-            <div className="mt-3 sm:hidden flex justify-center">
+            <div className="mt-2 sm:hidden flex justify-center">
               <a
                 href="#about"
                 className="text-white/70 hover:text-white animate-bounce inline-block"
@@ -147,9 +147,9 @@ export default function CountdownTimer() {
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  width="32"
-                  height="32"
-                  className="w-6 h-6 sm:w-8 sm:h-8 md:w-10 md:h-10"
+                  width="24"
+                  height="24"
+                  className="w-5 h-5"
                   viewBox="0 0 24 24"
                   fill="none"
                   stroke="currentColor"
@@ -166,7 +166,7 @@ export default function CountdownTimer() {
       </div>
 
       {/* Down Arrow - Visible only on large devices */}
-      <div className="hidden sm:flex justify-center mt-4 sm:mt-6">
+      <div className="hidden sm:flex justify-center mt-2">
         <a
           href="#about"
           className="text-white/70 hover:text-white animate-bounce inline-block"
@@ -174,9 +174,9 @@ export default function CountdownTimer() {
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            width="40"
-            height="40"
-            className="w-8 h-8 md:w-10 md:h-10 lg:w-12 lg:h-12"
+            width="32"
+            height="32"
+            className="w-6 h-6 md:w-8 md:h-8"
             viewBox="0 0 24 24"
             fill="none"
             stroke="currentColor"
