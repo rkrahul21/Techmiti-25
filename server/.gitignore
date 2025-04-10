@@ -1,5 +1,36 @@
-node_modules
-.env
-# 2ZDldvwHaI4x72pv
+# Node modules
+node_modules/
 
-# MONGODB_URI=mongodb+srv://sarfarazadil18:2ZDldvwHaI4x72pv@cluster0.aymgzr5.mongodb.net/yourDatabaseName?retryWrites=true&w=majority
+# Environment variables
+.env
+
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# OS-specific files
+.DS_Store
+Thumbs.db
+
+# Optional npm cache directory
+.npm/
+
+# Build outputs (if any)
+dist/
+build/
+
+# IDE/editor settings
+.vscode/
+.idea/
+
+# TypeScript cache
+*.tsbuildinfo
+
+# Misc
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
