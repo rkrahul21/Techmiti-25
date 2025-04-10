@@ -3,6 +3,8 @@ import AboutUs from './components/sections/AboutUs';
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Admin from "./pages/Admin";
 import AdminLogin from "./pages/AdminLogin";
+import { Events } from "./pages/Events";
+import EventDetail from './pages/EventDetails';
 
 
 function App() {
@@ -28,6 +30,11 @@ function App() {
           <Route path="/" element={<AboutUs/>} />
           <Route path="/admin-login" element={<AdminLogin />} />
         <Route path="/admin" element={<Admin />} />
+        <Route path="/events" element={<Events />} />
+        <Route path="/events/detail" element={<EventDetail />} />
+        {/* <Route path="/events/:id" element={<Events />} /> */}
+        {/* <Route path="/events" element={<EventDetail />} /> */}
+
       </Routes>
     
       {/* <div className="bg-blue-900 text-white flex flex-col items-center justify-center h-screen">

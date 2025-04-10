@@ -28,7 +28,7 @@ const AdminDashboard = () => {
             <div className="flex gap-4 flex-wrap">
               <Button onClick={() => setView("users")}>Registered Users</Button>
               <Button onClick={() => setView("summary")}>Event Summary</Button>
-              <Button variant="outline" onClick={() => setView("none")}>Dashboard</Button>
+              <Button  onClick={() => setView("none")}>Dashboard</Button>
             </div>
           </div>
 
