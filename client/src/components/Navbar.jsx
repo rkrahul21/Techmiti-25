@@ -51,11 +51,13 @@ export default function Navbar() {
     <nav
       className={cn(
         "fixed top-0 left-0 right-0 z-50 transition-all duration-300 font-['Space_Grotesk']",
-        scrolled ? "bg-black/80 backdrop-blur-lg" : "bg-transparent"
+        scrolled
+          ? "bg-gradient-to-r from-black/85 via-black/80 to-black/85 backdrop-blur-md"
+          : "bg-gradient-to-r from-black/55 via-black/45 to-black/55 backdrop-blur-[3px]"
       )}
     >
       {/* Gradient Border Bottom */}
-      <div className="absolute bottom-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-[#00f2fe] to-transparent opacity-50"></div>
+      <div className="absolute bottom-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-[#00f2fe]/90 to-transparent opacity-65"></div>
 
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16">
