@@ -1,18 +1,110 @@
-import React from 'react'
+import React from "react";
+import styled from "styled-components";
 
-function AboutUs() {
+const Section = styled.section`
+  min-height: 100vh;
+  width: 100vw;
+  margin: 0 auto;
+  display: flex;
+  background-color: #2b3e56; /* Matches the event poster background */
+  font-family: 'Orbitron', sans-serif;
+  position: relative;
+
+  @media (max-width: 48em) {
+    flex-direction: column;
+    align-items: center;
+  }
+`;
+
+const Left = styled.div`
+  width: 50%;
+  color: white;
+  font-size: 1.1rem;
+  font-weight: 400;
+  text-align: justify;
+  padding: 10rem 2rem 2rem 4rem;
+
+  @media (max-width: 64em) {
+    width: 100%;
+    padding: 2rem;
+    font-size: 1rem;
+  }
+
+  @media (max-width: 30em) {
+    padding: 1.5rem;
+    font-size: 0.95rem;
+  }
+`;
+
+const Right = styled.div`
+  width: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+
+  img {
+    width: 100%;
+    height: auto;
+    max-height: 750px;
+    object-fit: cover;
+  }
+
+  @media (max-width: 64em) {
+    width: 100%;
+    padding: 1rem;
+
+    img {
+      width: 100%;
+      height: auto;
+    }
+  }
+`;
+
+const Title = styled.h1`
+  position: absolute;
+  top: 2rem;
+  left: 4rem;
+  font-size: 4rem;
+  color: white;
+  font-weight: 700;
+  z-index: 999;
+  background-color: rgba(0, 0, 0, 0.5);
+  padding: 0.5rem 1.5rem;
+  border-radius: 10px;
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
+
+  @media (max-width: 64em) {
+    top: 1.5rem;
+    left: 2rem;
+    font-size: 3rem;
+  }
+
+  @media (max-width: 30em) {
+    font-size: 2.5rem;
+    left: 1rem;
+  }
+`;
+
+const About = () => {
   return (
-    <div className='relative'>
-      <h1>About Us</h1>
-      <div className='  bg-no-repeat bg-[url("https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzNjUyOXwwfDF8c2VhcmNofDJ8fHRlY2h8ZW58MHx8fHwxNjg3NTQ5NzA1&ixlib=rb-4.0.3&q=80&w=1080")] h-screen bg-cover bg-center flex items-center justify-center text-white text-4xl font-bold'>
-        <div className='bg-black/30 bg-opacity-50 p-10 rounded-lg shadow-lg text-lg absolute bottom-5'>
-          <p>
-            Welcome to Techmit'25! We are a passionate team dedicated to bringing you the latest and greatest in technology. Our mission is to create an engaging platform where tech enthusiasts can come together, share ideas, and learn from one another. Join us as we explore the ever-evolving world of technology and innovation. Stay tuned for exciting events, workshops, and discussions that will inspire and empower you on your tech journey!
-          </p>
-        </div>
-      </div>
-    </div>
-  )
-}
+    <Section id="fixed-target" className="about">
+      <Title>About Us</Title>
+      <Left>
+        TechMITi'25 is the annual science and technology festival of MIT Muzaffarpur,
+        which is organized by Moxie-The Technical Club that is going to be held on
+        14th -16th May 2025 in fully offline mode. TechMITi comprises a diverse
+        array of competitive technical events, exhibitions, workshops, and guest
+        speakers that attract the participation of students from engineering institutes
+        all across the nation. The 3-day fest congregation is expected to have
+        4,000+ footprints gathering from various technical institutes to participate in
+        and witness the TechMITi.
+      </Left>
+      <Right>
+        <img src="/231531.jpg" alt="TechMITi Poster" />
+      </Right>
+    </Section>
+  );
+};
 
-export default AboutUs
+export default About;
