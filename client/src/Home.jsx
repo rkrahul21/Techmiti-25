@@ -1,8 +1,7 @@
 import React from "react";
 import AboutUs from "./components/sections/AboutUs";
-
+import Sponsor from "./components/sections/Sponsors";
 import Footer from "./components/Footer";
-import Sponsors from "./components/sections/Sponsors";
 import HeroSection from "./components/HeroSection";
 
 function Home() {
