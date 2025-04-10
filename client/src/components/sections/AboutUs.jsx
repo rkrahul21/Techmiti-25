@@ -6,11 +6,12 @@ const Section = styled.section`
   width: 100vw;
   margin: 0 auto;
   display: flex;
-  background-color: #2b3e56; /* Matches the event poster background */
+  background: linear-gradient(to bottom, #000000 0%, #010d1f 50%, #0d1b2a 100%);
   font-family: 'Orbitron', sans-serif;
   position: relative;
+  overflow: hidden;
 
-  @media (max-width: 48em) {
+  @media (max-width: 768px) {
     flex-direction: column;
     align-items: center;
   }
@@ -18,20 +19,20 @@ const Section = styled.section`
 
 const Left = styled.div`
   width: 50%;
-  color: white;
+  color: #ffffff;
   font-size: 1.1rem;
   font-weight: 400;
   text-align: justify;
   padding: 10rem 2rem 2rem 4rem;
 
-  @media (max-width: 64em) {
+  @media (max-width: 1024px) {
     width: 100%;
-    padding: 2rem;
+    padding: 6rem 2rem 2rem 2rem;
     font-size: 1rem;
   }
 
-  @media (max-width: 30em) {
-    padding: 1.5rem;
+  @media (max-width: 480px) {
+    padding: 4rem 1.5rem 2rem 1.5rem;
     font-size: 0.95rem;
   }
 `;
@@ -47,16 +48,17 @@ const Right = styled.div`
     width: 100%;
     height: auto;
     max-height: 750px;
-    object-fit: cover;
+    object-fit: contain;
+    border-radius: 20px;
+    box-shadow: 0 0 30px rgba(0, 217, 255, 0.2);
   }
 
-  @media (max-width: 64em) {
+  @media (max-width: 1024px) {
     width: 100%;
-    padding: 1rem;
+    padding: 1.5rem;
 
     img {
-      width: 100%;
-      height: auto;
+      max-height: 500px;
     }
   }
 `;
@@ -66,23 +68,24 @@ const Title = styled.h1`
   top: 2rem;
   left: 4rem;
   font-size: 4rem;
-  color: white;
+  color: #00d9ff;
   font-weight: 700;
-  z-index: 999;
+  z-index: 10;
   background-color: rgba(0, 0, 0, 0.5);
   padding: 0.5rem 1.5rem;
   border-radius: 10px;
-  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
+  text-shadow: 2px 2px 12px rgba(0, 217, 255, 0.7);
 
-  @media (max-width: 64em) {
+  @media (max-width: 1024px) {
     top: 1.5rem;
     left: 2rem;
     font-size: 3rem;
   }
 
-  @media (max-width: 30em) {
-    font-size: 2.5rem;
+  @media (max-width: 480px) {
+    font-size: 2.2rem;
     left: 1rem;
+    padding: 0.4rem 1rem;
   }
 `;
 
@@ -93,7 +96,7 @@ const About = () => {
       <Left>
         TechMITi'25 is the annual science and technology festival of MIT Muzaffarpur,
         which is organized by Moxie-The Technical Club that is going to be held on
-        14th -16th May 2025 in fully offline mode. TechMITi comprises a diverse
+        14th - 16th May 2025 in fully offline mode. TechMITi comprises a diverse
         array of competitive technical events, exhibitions, workshops, and guest
         speakers that attract the participation of students from engineering institutes
         all across the nation. The 3-day fest congregation is expected to have

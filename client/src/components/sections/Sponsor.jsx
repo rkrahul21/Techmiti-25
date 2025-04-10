@@ -11,7 +11,7 @@ const SponsorsContainer = styled.div`
   padding: 5rem 0;
   height: 100%;
   cursor: pointer;
-  background-color: #2b3e56;
+  background: radial-gradient(circle at top center, #0f2b46, #000000); /* Updated background */
 `;
 
 const Section = styled.div`
