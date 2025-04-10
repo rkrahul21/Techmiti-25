@@ -4,10 +4,12 @@ import AboutUs from "./components/sections/AboutUs";
 import Countdown from "./components/Countdown";
 import Footer from "./components/Footer";
 import Sponsor from "./components/sections/Sponsor";
+import HeroSection from "./components/HeroSection";
 
 function Home() {
   return (
     <div min-h-screen bg-black>
+      <HeroSection />
       <Countdown />
       <div className="relative w-full h-screen overflow-hidden">
         <video
