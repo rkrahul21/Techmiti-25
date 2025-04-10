@@ -1,110 +1,214 @@
 import React from "react";
 import styled from "styled-components";
 
+const VideoBackground = styled.video`
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  min-width: 100%;
+  min-height: 100%;
+  width: auto;
+  height: auto;
+  z-index: -1;
+  object-fit: cover;
+  opacity: 0.7;
+`;
+
 const SponsorsContainer = styled.div`
+  min-height: 100vh;
+  width: 100%;
+  position: relative;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  max-width: 100%;
-  margin: auto;
   padding: 5rem 0;
-  height: 100%;
-  cursor: pointer;
-  background-color: #2b3e56;
+  overflow: hidden;
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(
+      to b,
+      rgba(0, 0, 0, 0.85) 0%,
+      rgba(0, 0, 0, 0.75) 50%,
+      rgba(0, 0, 0, 0.85) 100%
+    );
+    pointer-events: none;
+    z-index: 0;
+  }
+`;
+
+const ContentWrapper = styled.div`
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 2rem;
+  position: relative;
+  z-index: 1;
+`;
+
+const Title = styled.h1`
+  font-size: 3.5rem;
+  color: white;
+  text-align: center;
+  margin-bottom: 4rem;
+  background: linear-gradient(120deg, #4a90e2, #67f3ff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  position: relative;
+  font-family: "Orbitron", sans-serif;
+
+  &::after {
+    content: "";
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 4px;
+    background: #4a90e2;
+    border-radius: 2px;
+  }
 `;
 
 const Section = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
+  margin-bottom: 4rem;
+  width: 100%;
 
-  h1 {
-    color: white;
+  h2 {
+    font-size: 2rem;
+    color: #4a90e2;
+    margin-bottom: 2rem;
+    text-align: center;
+    font-family: "Orbitron", sans-serif;
+    background: linear-gradient(120deg, #4a90e2, #67f3ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
   }
 `;
 
-const ContImg = styled.img`
-  width: 300px;
-  height: 300px;
+const SponsorCard = styled.div`
+  background: rgba(28, 28, 39, 0.75);
+  backdrop-filter: blur(10px);
+  border-radius: 20px;
+  padding: 2rem;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  width: 100%;
+  max-width: ${(props) => props.maxWidth || "auto"};
+
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      to right,
+      rgba(79, 172, 254, 0.1),
+      rgba(0, 242, 254, 0.1)
+    );
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  &:hover {
+    transform: translateY(-5px);
+    border-color: rgba(255, 255, 255, 0.2);
+
+    &::before {
+      opacity: 1;
+    }
+  }
+
+  img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    transition: transform 0.3s ease;
+
+    &:hover {
+      transform: scale(1.02);
+    }
+  }
 `;
 
-const Partners = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  margin: auto;
-  flex-wrap: wrap;
-  padding: auto 20px;
-`;
-
-const EventSponsors = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  margin: auto;
-  flex-wrap: wrap;
-`;
-
-const EventSponsorImg = styled.img`
-  display: flex;
-  margin-top: 20px;
-  margin-right: 20px;
-  width: 500px;
-  height: 300px;
-  border-radius: 5px;
+const SponsorGrid = styled.div`
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  width: 100%;
 `;
 
 const Sponsors = () => {
   return (
     <SponsorsContainer>
-      <Section>
-        <h1>Title Sponsor</h1>
-        <ContImg src="https://i.imgur.com/d9pkeAd.png" alt="MITMAAI" />
-      </Section>
+      <VideoBackground autoPlay muted loop playsInline>
+        <source src="/bg-video.mp4" type="video/mp4" />
+      </VideoBackground>
+      <ContentWrapper>
+        <Title>Our Sponsors</Title>
 
-      <Section>
-        <h1>Associate Sponsor</h1>
-        <a
-          href="https://www.dmi.ac.in/"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <EventSponsorImg
-            src="https://i.imgur.com/t1ESRta.jpg"
-            alt="DMI"
-            style={{ width: "500px", height: "300px", borderRadius: "5px" }}
-          />
-        </a>
-      </Section>
+        <Section>
+          <h2>Title Sponsor</h2>
+          <SponsorCard maxWidth="500px">
+            <img src="https://i.imgur.com/d9pkeAd.png" alt="MITMAAI" />
+          </SponsorCard>
+        </Section>
 
-      <Section>
-        <h1>Partners</h1>
-        <Partners>
-          <ContImg src="https://i.imgur.com/zVIsPPH.png" alt="GO69" />
-        </Partners>
-      </Section>
+        <Section>
+          <h2>Associate Sponsor</h2>
+          <SponsorCard maxWidth="600px">
+            <a
+              href="https://www.dmi.ac.in/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <img src="https://i.imgur.com/t1ESRta.jpg" alt="DMI" />
+            </a>
+          </SponsorCard>
+        </Section>
 
-      <Section>
-        <h1>Event Sponsor</h1>
-        <EventSponsors>
-          <EventSponsorImg
-            src="https://i.imgur.com/qXJb2oi.jpg"
-            alt="Synergy Classes"
-          />
-          <EventSponsorImg
-            src="https://i.imgur.com/ZbBqdNf.jpg"
-            alt="Decathlon"
-          />
-          <EventSponsorImg
-            src="https://i.imgur.com/7mE2L8v.png"
-            alt="Internshala"
-          />
-        </EventSponsors>
-      </Section>
+        <Section>
+          <h2>Partners</h2>
+          <SponsorCard maxWidth="400px">
+            <img src="https://i.imgur.com/zVIsPPH.png" alt="GO69" />
+          </SponsorCard>
+        </Section>
+
+        <Section>
+          <h2>Event Sponsors</h2>
+          <SponsorGrid>
+            <SponsorCard>
+              <img
+                src="https://i.imgur.com/qXJb2oi.jpg"
+                alt="Synergy Classes"
+              />
+            </SponsorCard>
+            <SponsorCard>
+              <img src="https://i.imgur.com/ZbBqdNf.jpg" alt="Decathlon" />
+            </SponsorCard>
+            <SponsorCard>
+              <img src="https://i.imgur.com/7mE2L8v.png" alt="Internshala" />
+            </SponsorCard>
+            <SponsorCard>
+              <img src="https://i.imgur.com/7mE2L8v.png" alt="Internshala" />
+            </SponsorCard>
+            <SponsorCard>
+              <img src="https://i.imgur.com/7mE2L8v.png" alt="Internshala" />
+            </SponsorCard>
+          </SponsorGrid>
+        </Section>
+      </ContentWrapper>
     </SponsorsContainer>
   );
 };
