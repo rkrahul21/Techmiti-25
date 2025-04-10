@@ -1,33 +1,99 @@
-import React from 'react'
-import './Sponsors.css'
+import React from 'react';
+import styled from 'styled-components';
+
+const SponsorsContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  max-width: 100%;
+  margin: auto;
+  padding: 5rem 0;
+  height: 100%;
+  cursor: pointer;
+  background-color: #2b3e56;
+`;
+
+const Section = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  h1 {
+    color: white;
+  }
+`;
+
+const ContImg = styled.img`
+  width: 300px;
+  height: 300px;
+`;
+
+const Partners = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+  flex-wrap: wrap;
+  padding: auto 20px;
+`;
+
+const EventSponsors = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+  flex-wrap: wrap;
+`;
+
+const EventSponsorImg = styled.img`
+  display: flex;
+  margin-top: 20px;
+  margin-right: 20px;
+  width: 500px;
+  height: 300px;
+  border-radius: 5px;
+`;
+
 const Sponsors = () => {
   return (
-    <div className='sponsors-cont'>
-        <div className="cont">
-            <h1>Title Sponsor</h1>
-            <img className='contimg' src='https://i.imgur.com/d9pkeAd.png' alt='MITMAAI'/>
-        </div>
-        <div className="cont">
-            <h1>Associate Sponsor</h1>
-            <a href='https://www.dmi.ac.in/' target='blank'><img src='https://i.imgur.com/t1ESRta.jpg' alt='DMI' style={{width:"500px", height:"300px" ,borderRadius:"5px"}}/></a>
-        </div>
-        <div className="cont">
-            <h1>Partners</h1>
-            <div className="partners">
-            <img className='contimg' src="https://i.imgur.com/zVIsPPH.png" alt="GO69" />
-            </div>  
-        </div>
-        <div className="cont">
-            <h1>Event Sponsor</h1>
-            <div className="eventSponsors">
-               <img className='eventsponsorsimg' src="https://i.imgur.com/qXJb2oi.jpg" alt="synergy classes" />
-               <img className='eventsponsorsimg' src="https://i.imgur.com/ZbBqdNf.jpg" alt="Decathlon" />
-               <img className='eventsponsorsimg' src="https://i.imgur.com/7mE2L8v.png" alt="internshala" />
-              
-            </div>  
-        </div>
-    </div>
-  )
-}
+    <SponsorsContainer>
+      <Section>
+        <h1>Title Sponsor</h1>
+        <ContImg src='https://i.imgur.com/d9pkeAd.png' alt='MITMAAI' />
+      </Section>
 
-export default Sponsors
+      <Section>
+        <h1>Associate Sponsor</h1>
+        <a href='https://www.dmi.ac.in/' target='_blank' rel="noopener noreferrer">
+          <EventSponsorImg
+            src='https://i.imgur.com/t1ESRta.jpg'
+            alt='DMI'
+            style={{ width: '500px', height: '300px', borderRadius: '5px' }}
+          />
+        </a>
+      </Section>
+
+      <Section>
+        <h1>Partners</h1>
+        <Partners>
+          <ContImg src="https://i.imgur.com/zVIsPPH.png" alt="GO69" />
+        </Partners>
+      </Section>
+
+      <Section>
+        <h1>Event Sponsor</h1>
+        <EventSponsors>
+          <EventSponsorImg src="https://i.imgur.com/qXJb2oi.jpg" alt="Synergy Classes" />
+          <EventSponsorImg src="https://i.imgur.com/ZbBqdNf.jpg" alt="Decathlon" />
+          <EventSponsorImg src="https://i.imgur.com/7mE2L8v.png" alt="Internshala" />
+        </EventSponsors>
+      </Section>
+    </SponsorsContainer>
+  );
+};
+
+export default Sponsors;
