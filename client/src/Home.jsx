@@ -2,7 +2,7 @@ import React from "react";
 import AboutUs from "./components/sections/AboutUs";
 
 import Footer from "./components/Footer";
-import Sponsor from "./components/sections/Sponsor";
+import Sponsors from "./components/sections/Sponsors";
 import HeroSection from "./components/HeroSection";
 
 function Home() {
@@ -11,7 +11,7 @@ function Home() {
       <HeroSection />
 
       <AboutUs />
-      <Sponsor />
+      <Sponsors />
       <Footer />
     </div>
   );
