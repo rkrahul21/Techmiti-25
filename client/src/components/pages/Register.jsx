@@ -573,22 +573,79 @@ function Register() {
             <div className="mt-8 space-y-6">
               <div className="p-6 bg-white/5 rounded-xl border border-white/10">
                 <h3 className="text-xl font-semibold text-gray-200 mb-4">
-                  Bank Account
+                  Bank Account Details
                 </h3>
                 <MessageBox>
-                  Participants can pay registration fee of Rs 1100/- on
+                  Participants can pay registration fee of Rs 1000/- on
                   following bank account and upload the screenshot of payment:
                 </MessageBox>
-                <div className="mt-4 p-4 bg-white/5 rounded-lg">
-                  <h4 className="text-lg font-medium text-gray-200 mb-2">
-                    Bank Details of Moxie:
-                  </h4>
-                  <div className="space-y-1 text-gray-300">
-                    <p>A/c no 3642274255</p>
-                    <p>A/c Holder - MOXIE TECHNICAL CLUB MIT MUZAFFARPUR</p>
-                    <p>IFSC code - CBIN0282034</p>
-                    <p>Bank - Central Bank of India</p>
-                    <p>Branch - Jhuran Chapra, Muzaffarpur (BH)</p>
+                <div className="mt-4 space-y-4">
+                  <div className="p-4 bg-white/5 rounded-lg border border-white/10">
+                    <h4 className="text-lg font-medium text-gray-200 mb-3">
+                      Bank Details of Moxie:
+                    </h4>
+                    <div className="space-y-2 text-gray-300">
+                      <p className="flex items-center space-x-2">
+                        <span className="font-medium min-w-[120px]">
+                          A/c no:
+                        </span>
+                        <span className="select-all">3642274255</span>
+                      </p>
+                      <p className="flex items-center space-x-2">
+                        <span className="font-medium min-w-[120px]">
+                          A/c Holder:
+                        </span>
+                        <span>MOXIE TECHNICAL CLUB MIT MUZAFFARPUR</span>
+                      </p>
+                      <p className="flex items-center space-x-2">
+                        <span className="font-medium min-w-[120px]">
+                          IFSC code:
+                        </span>
+                        <span className="select-all">CBIN0282034</span>
+                      </p>
+                      <p className="flex items-center space-x-2">
+                        <span className="font-medium min-w-[120px]">Bank:</span>
+                        <span>Central Bank of India</span>
+                      </p>
+                      <p className="flex items-center space-x-2">
+                        <span className="font-medium min-w-[120px]">
+                          Branch:
+                        </span>
+                        <span>Jhuran Chapra, Muzaffarpur (BH)</span>
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="space-y-4">
+                    <div className="space-y-2">
+                      <label
+                        htmlFor="paymentreceipt"
+                        className="block text-sm font-medium text-gray-300"
+                      >
+                        Screenshot of Payment (less than 2 mb)*
+                      </label>
+                      <input
+                        type="file"
+                        required
+                        onChange={(e) => validateFile(e)}
+                        className="w-full px-4 py-2 bg-white/10 border border-white/20 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-white file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-medium file:bg-blue-500 file:text-white hover:file:bg-blue-600"
+                      />
+                    </div>
+                    <div className="space-y-2">
+                      <label
+                        htmlFor="transactionId"
+                        className="block text-sm font-medium text-gray-300"
+                      >
+                        Transaction ID*
+                      </label>
+                      <input
+                        type="text"
+                        required
+                        placeholder="Enter Transaction ID"
+                        onChange={(e) => setTransactionId(e.target.value)}
+                        className="w-full px-4 py-2 bg-white/10 border border-white/20 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-white placeholder-gray-400"
+                      />
+                    </div>
                   </div>
                 </div>
               </div>
