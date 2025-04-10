@@ -36,25 +36,29 @@ const Countdown = () => {
     return () => clearInterval(interval);
   }, []);
 
+  // Inject Google Font
+  useEffect(() => {
+    const link = document.createElement("link");
+    link.href = "https://fonts.googleapis.com/css2?family=Sirin+Stencil&display=swap";
+    link.rel = "stylesheet";
+    document.head.appendChild(link);
+  }, []);
+
   return (
     <div className="relative w-full h-screen overflow-hidden text-center flex flex-col justify-center items-center">
-
       {/* Background Video */}
       <video
         ref={videoRef}
-        className="absolute top-0 left-0  h-full object-cover z-0 w-screen "
+        className="absolute top-0 left-0 h-full object-cover z-0 w-screen"
         autoPlay
         loop
         muted
         playsInline
         onCanPlayThrough={() => setVideoLoaded(true)}
-        
       >
         <source src="/8ef34bf2.mp4" type="video/mp4" />
         Your browser does not support the video tag.
       </video>
-
-
 
       {/* Preloader */}
       {!videoLoaded && (
@@ -64,11 +68,14 @@ const Countdown = () => {
       )}
 
       {/* Main Content */}
-      <div className="space-y-6 py-10 z-10">
-        <p className="text-3xl md:text-5xl lg:text-6xl text-purple-400 tracking-wide font-[sans-serif]">
+      <div className="space-y-6 py-10 z-10" style={{ fontFamily: "'Sirin Stencil', sans-serif" }}>
+        <h1 className="text-7xl md:text-8xl lg:text-9xl text-white/90 tracking-wide">
+          T e c h M I T i ' 2 5
+        </h1>
+        <p className="text-3xl md:text-5xl lg:text-6xl text-purple-400 tracking-wide">
           14th May, 2025
         </p>
-        <p className="text-xl md:text-3xl lg:text-4xl text-white/90 tracking-wide font-[sans-serif]">
+        <p className="text-xl md:text-3xl lg:text-4xl text-white/90 tracking-wide">
           EXCITEMENT IS BREWING. ARE YOU IN?
         </p>
 
@@ -96,10 +103,10 @@ const Countdown = () => {
               key={i}
               className="backdrop-blur-sm bg-white/5 rounded-lg border border-white/10 p-4 flex flex-col items-center justify-center transition-all duration-300 hover:bg-white/10"
             >
-              <span className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-white font-[sans-serif]">
+              <span className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-white">
                 {item.value}
               </span>
-              <span className="text-sm md:text-base text-purple-300 mt-2 font-[sans-serif]">
+              <span className="text-sm md:text-base text-purple-300 mt-2">
                 {item.label}
               </span>
             </div>
