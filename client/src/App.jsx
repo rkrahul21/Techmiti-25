@@ -1,39 +1,21 @@
-import React from "react";
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Admin from "./pages/Admin";
+import AdminLogin from "./pages/AdminLogin";
+import Home from './Home';
+import Register from './components/pages/Register';
+
+
 // hlh
 function App() {
-  const events = [
-    "RoboRace",
-    "Dangal",
-    "Quiz",
-    "Codingo",
-    "Hackathon",
-    "TechnoTalks",
-    "Workshops",
-    "Treasure Hunt",
-    "Gaming",
-    "Web Development",
-    "App Development",
-    "AI/ML",
-  ];
+  
   return (
-    <>
-      <div className="bg-blue-900 text-white flex flex-col items-center justify-center h-screen">
-        <h1>TECHMIT'25</h1>
-        <h3>Coming Soon Adil</h3>
-      </div>
-      <div>
-        {events.map((event, index) => (
-          <div
-            key={index}
-            className="bg-blue-900 text-white flex flex-col items-center justify-center "
-          >
-            <h1 className="bg-yellow-500 m-2 p-2 rounded-md shadow-lg">
-              {event}
-            </h1>
-          </div>
-        ))}
-      </div>
-    </>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/admin" element={<Admin />} />
+        <Route path="/admin/login" element={<AdminLogin />} />
+        <Route path="/register" element={<Register/>}/>
+      </Routes>
   );
 }
 
