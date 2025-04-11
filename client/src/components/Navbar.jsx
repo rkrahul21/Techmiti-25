@@ -109,22 +109,23 @@ export default function Navbar() {
                 ></span>
               </a>
             ))}
-            {!isRegisterPage && (
-              <div className="relative group ml-12">
-                <div className="absolute -inset-[2px] bg-gradient-to-r from-[#6a75f7] via-[#00f2fe] to-[#6a75f7] rounded-lg opacity-50 group-hover:opacity-100 transition-all duration-500"></div>
-                <Button
-                  variant="outline"
-                  onClick={handleRegisterClick}
-                  className="relative px-6 py-2 text-sm font-medium bg-[#1C1C27] border-0 text-white hover:bg-[#2A2A3A] transition-all duration-300 rounded-lg overflow-hidden group-hover:scale-[1.02]"
-                >
-                  <div className="absolute inset-0 bg-gradient-to-r from-[#6a75f7]/20 via-[#00f2fe]/20 to-[#6a75f7]/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                  <span className="relative z-10 flex items-center gap-2">
-                    Register Now
-                    <ArrowRight className="h-4 w-4 transform group-hover:translate-x-1 transition-transform" />
-                  </span>
-                </Button>
-              </div>
-            )}
+            <div className="relative group ml-12">
+              {!isRegisterPage && (
+                <>
+                  <div className="absolute -inset-[2px] bg-gradient-to-r from-[#6a75f7] via-[#00f2fe] to-[#6a75f7] rounded-lg opacity-50 group-hover:opacity-100 transition-all duration-500"></div>
+                  <Button
+                    variant="outline"
+                    className="relative px-6 py-2 text-sm font-medium bg-[#1C1C27] border-0 text-white hover:bg-[#2A2A3A] transition-all duration-300 rounded-lg overflow-hidden group-hover:scale-[1.02]"
+                  >
+                    <div className="absolute inset-0 bg-gradient-to-r from-[#6a75f7]/20 via-[#00f2fe]/20 to-[#6a75f7]/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                    <span className="relative z-10 flex items-center gap-2">
+                      <a href="/register">Register Now</a>
+                      <ArrowRight className="h-4 w-4 transform group-hover:translate-x-1 transition-transform" />
+                    </span>
+                  </Button>
+                </>
+              )}
+            </div>
           </div>
 
           {/* Mobile Navigation Toggle */}
