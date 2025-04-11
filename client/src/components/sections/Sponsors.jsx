@@ -95,11 +95,37 @@ const Section = styled.div`
   }
 `;
 
+const HorizontalSponsorsContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 4rem;
+  flex-wrap: wrap;
+  gap: 3rem;
+
+  @media (max-width: 1200px) {
+    flex-direction: column;
+    align-items: center;
+  }
+`;
+
+const HorizontalSection = styled(Section)`
+  flex: 1;
+  margin-bottom: 0;
+  min-width: 250px;
+  max-width: 350px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+
 const SponsorCard = styled.div`
   background: rgba(28, 28, 39, 0.75);
   backdrop-filter: blur(10px);
   border-radius: 20px;
-  padding: 2rem;
+  padding: 1.5rem;
   border: 1px solid rgba(255, 255, 255, 0.1);
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
   position: relative;
@@ -107,6 +133,9 @@ const SponsorCard = styled.div`
   transition: all 0.3s ease;
   width: 100%;
   max-width: ${(props) => props.$maxWidth || "auto"};
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
   &::before {
     content: "";
@@ -132,9 +161,11 @@ const SponsorCard = styled.div`
 
   img {
     width: 100%;
+    max-width: 250px;
     height: auto;
     border-radius: 10px;
     transition: transform 0.3s ease;
+    object-fit: contain;
 
     &:hover {
       transform: scale(1.02);
@@ -158,32 +189,34 @@ const Sponsors = () => {
       <ContentWrapper>
         <Title>Our Sponsors</Title>
 
-        <Section>
-          <h2>Title Sponsor</h2>
-          <SponsorCard $maxWidth="500px">
-            <img src="https://i.imgur.com/d9pkeAd.png" alt="MITMAAI" />
-          </SponsorCard>
-        </Section>
+        <HorizontalSponsorsContainer>
+          <HorizontalSection>
+            <h2>Title Sponsor</h2>
+            <SponsorCard $maxWidth="500px">
+              <img src="https://i.imgur.com/d9pkeAd.png" alt="MITMAAI" />
+            </SponsorCard>
+          </HorizontalSection>
 
-        <Section>
-          <h2>Associate Sponsor</h2>
-          <SponsorCard $maxWidth="600px">
-            <a
-              href="https://www.dmi.ac.in/"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <img src="https://i.imgur.com/t1ESRta.jpg" alt="DMI" />
-            </a>
-          </SponsorCard>
-        </Section>
+          <HorizontalSection>
+            <h2>Associate Sponsor</h2>
+            <SponsorCard $maxWidth="600px">
+              <a
+                href="https://www.dmi.ac.in/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <img src="https://i.imgur.com/t1ESRta.jpg" alt="DMI" />
+              </a>
+            </SponsorCard>
+          </HorizontalSection>
 
-        <Section>
-          <h2>Partners</h2>
-          <SponsorCard $maxWidth="400px">
-            <img src="https://i.imgur.com/zVIsPPH.png" alt="GO69" />
-          </SponsorCard>
-        </Section>
+          <HorizontalSection>
+            <h2>Partners</h2>
+            <SponsorCard $maxWidth="400px">
+              <img src="https://i.imgur.com/zVIsPPH.png" alt="GO69" />
+            </SponsorCard>
+          </HorizontalSection>
+        </HorizontalSponsorsContainer>
 
         <Section>
           <h2>Event Sponsors</h2>
