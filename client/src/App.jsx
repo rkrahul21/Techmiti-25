@@ -8,6 +8,8 @@ import Events from "./pages/Events";
 import EventDetail from "./pages/EventDetails";
 import Schedule from "./pages/Schedule";
 import Brochure from "./pages/Brochure";
+import Sponsors from "./pages/Sponsors";
+import Gallery from "./pages/Gallery";
 
 // hlh
 function App() {
@@ -22,6 +24,8 @@ function App() {
         <Route path="/register" element={<Register />} />
         <Route path="/schedule" element={<Schedule />} />
         <Route path="/brochure" element={<Brochure />} />
+        <Route path="/sponsors" element={<Sponsors />} />
+        <Route path="/gallery" element={<Gallery />} />
       </Routes>
     </div>
   );
