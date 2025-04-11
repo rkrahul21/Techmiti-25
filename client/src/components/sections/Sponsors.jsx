@@ -106,7 +106,7 @@ const SponsorCard = styled.div`
   overflow: hidden;
   transition: all 0.3s ease;
   width: 100%;
-  max-width: ${(props) => props.maxWidth || "auto"};
+  max-width: ${(props) => props.$maxWidth || "auto"};
 
   &::before {
     content: "";
@@ -160,14 +160,14 @@ const Sponsors = () => {
 
         <Section>
           <h2>Title Sponsor</h2>
-          <SponsorCard maxWidth="500px">
+          <SponsorCard $maxWidth="500px">
             <img src="https://i.imgur.com/d9pkeAd.png" alt="MITMAAI" />
           </SponsorCard>
         </Section>
 
         <Section>
           <h2>Associate Sponsor</h2>
-          <SponsorCard maxWidth="600px">
+          <SponsorCard $maxWidth="600px">
             <a
               href="https://www.dmi.ac.in/"
               target="_blank"
@@ -180,7 +180,7 @@ const Sponsors = () => {
 
         <Section>
           <h2>Partners</h2>
-          <SponsorCard maxWidth="400px">
+          <SponsorCard $maxWidth="400px">
             <img src="https://i.imgur.com/zVIsPPH.png" alt="GO69" />
           </SponsorCard>
         </Section>
