@@ -7,6 +7,7 @@ import Register from "./components/pages/Register";
 import Events from "./pages/Events";
 import EventDetail from "./pages/EventDetails";
 import Schedule from "./pages/Schedule";
+import Brochure from "./pages/Brochure";
 
 // hlh
 function App() {
@@ -20,6 +21,7 @@ function App() {
         <Route path="/admin/login" element={<AdminLogin />} />
         <Route path="/register" element={<Register />} />
         <Route path="/schedule" element={<Schedule />} />
+        <Route path="/brochure" element={<Brochure />} />
       </Routes>
     </div>
   );
