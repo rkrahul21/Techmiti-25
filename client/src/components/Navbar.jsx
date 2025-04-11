@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import { Menu, X, Terminal, Code2, ArrowRight } from "lucide-react";
 import { Button } from "./ui/button";
 import { cn } from "../lib/utils";
-import { useLocation } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 
 const navItems = [
   { name: "Home", href: "/", icon: "🏠" },
@@ -19,9 +19,9 @@ const navItems = [
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const [activeLink, setActiveLink] = useState("/");
+  const [activeLink, setActiveLink] = useState("#home");
+  const navigate = useNavigate();
   const location = useLocation();
-  const isRegisterPage = location.pathname === "/register";
 
   useEffect(() => {
     const handleScroll = () => {
@@ -30,18 +30,6 @@ export default function Navbar() {
       } else {
         setScrolled(false);
       }
-
-      const sections = document.querySelectorAll("section");
-      sections.forEach((section) => {
-        const sectionTop = section.offsetTop - 100;
-        const sectionHeight = section.clientHeight;
-        if (
-          window.scrollY >= sectionTop &&
-          window.scrollY < sectionTop + sectionHeight
-        ) {
-          setActiveLink(`#${section.id}`);
-        }
-      });
     };
 
     window.addEventListener("scroll", handleScroll);
@@ -50,17 +38,27 @@ export default function Navbar() {
     };
   }, []);
 
+  const handleRegisterClick = () => {
+    navigate("/register");
+  };
+
+  const isRegisterPage = location.pathname === "/register";
+
   return (
     <nav
       className={cn(
         "fixed top-0 left-0 right-0 z-50 transition-all duration-300 font-['Space_Grotesk']",
         scrolled
-          ? "bg-gradient-to-r from-black/85 via-black/80 to-black/85 backdrop-blur-md"
-          : "bg-gradient-to-r from-black/55 via-black/45 to-black/55 backdrop-blur-[3px]"
+          ? location.pathname === "/"
+            ? "bg-gradient-to-r from-black/85 via-black/80 to-black/85 backdrop-blur-md"
+            : "bg-gradient-to-r from-[#0f0c29]/95 via-[#302b63]/90 to-[#0f0c29]/95 backdrop-blur-md"
+          : location.pathname === "/"
+          ? "bg-gradient-to-r from-black/50 via-black/45 to-black/50 backdrop-blur-[2px]"
+          : "bg-gradient-to-r from-[#0f0c29]/85 via-[#302b63]/80 to-[#0f0c29]/85 backdrop-blur-sm"
       )}
     >
       {/* Gradient Border Bottom */}
-      <div className="absolute bottom-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-[#00f2fe]/90 to-transparent opacity-65"></div>
+      <div className="absolute bottom-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-[#00f2fe]/40 to-transparent"></div>
 
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16">
@@ -90,11 +88,10 @@ export default function Navbar() {
                 href={item.href}
                 className={cn(
                   "px-6 py-2 text-md font-medium transition-all duration-300 relative group",
-                  activeLink === item.href
+                  location.pathname === item.href
                     ? "text-[#00f2fe]"
                     : "text-white/80 hover:text-[#00f2fe]"
                 )}
-                onClick={() => setActiveLink(item.href)}
               >
                 <span className="absolute left-2 top-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-opacity">
                   {item.icon}
@@ -102,7 +99,14 @@ export default function Navbar() {
                 <span className="relative inline-block left-0 group-hover:left-3 transition-all duration-300">
                   {item.name}
                 </span>
-                <span className="absolute bottom-0 left-0 w-0 h-[2px] bg-[#00f2fe] group-hover:w-full transition-all duration-300"></span>
+                <span
+                  className={cn(
+                    "absolute bottom-0 left-0 h-[2px] bg-[#00f2fe] transition-all duration-300",
+                    location.pathname === item.href
+                      ? "w-full"
+                      : "w-0 group-hover:w-full"
+                  )}
+                ></span>
               </a>
             ))}
             <div className="relative group ml-12">
@@ -143,28 +147,33 @@ export default function Navbar() {
 
       {/* Mobile Navigation Menu */}
       {isMenuOpen && (
-        <div className="md:hidden fixed top-16 right-0 w-64 h-[calc(100vh-4rem)] bg-black/95 backdrop-blur-lg border-l border-white/10 transform transition-transform duration-300 ease-in-out">
+        <div className="md:hidden fixed top-16 right-0 w-64 h-[calc(100vh-4rem)] bg-[#0f0c29]/95 backdrop-blur-lg border-l border-purple-500/20 transform transition-transform duration-300 ease-in-out">
           <div className="flex flex-col h-full">
             {/* Register Now Button at the top */}
-            <div className="p-4 border-b border-white/10">
-              <button className="relative w-full overflow-hidden group">
-                {/* Gradient Border */}
-                <div className="absolute inset-0 w-full h-full transition-all duration-300">
-                  <div className="absolute inset-0 w-full h-full bg-gradient-to-r from-[#6a75f7] via-[#00f2fe] to-[#6a75f7] opacity-0 group-hover:opacity-100"></div>
-                  <div className="absolute -inset-[1px] bg-gradient-to-r from-[#6a75f7] via-[#00f2fe] to-[#6a75f7] transition-all duration-500"></div>
-                </div>
-                {/* Button Shape with Gradient Background */}
-                <div className="relative bg-black/80 backdrop-blur-sm transition-all duration-300 group-hover:bg-black/40">
-                  <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-gradient-to-r from-[#6a75f7]/20 via-[#00f2fe]/20 to-[#6a75f7]/20"></div>
-                  <div className="px-6 py-3 relative z-10">
-                    <span className="relative z-10 flex items-center justify-center gap-2 text-white group-hover:text-[#00f2fe] transition-colors">
-                      <a href="/register">Register Now</a>
-                      <ArrowRight className="h-4 w-4 transform group-hover:translate-x-1 transition-transform" />
-                    </span>
+            {!isRegisterPage && (
+              <div className="p-4 border-b border-white/10">
+                <button
+                  className="relative w-full overflow-hidden group"
+                  onClick={handleRegisterClick}
+                >
+                  {/* Gradient Border */}
+                  <div className="absolute inset-0 w-full h-full transition-all duration-300">
+                    <div className="absolute inset-0 w-full h-full bg-gradient-to-r from-[#6a75f7] via-[#00f2fe] to-[#6a75f7] opacity-0 group-hover:opacity-100"></div>
+                    <div className="absolute -inset-[1px] bg-gradient-to-r from-[#6a75f7] via-[#00f2fe] to-[#6a75f7] transition-all duration-500"></div>
                   </div>
-                </div>
-              </button>
-            </div>
+                  {/* Button Shape with Gradient Background */}
+                  <div className="relative bg-black/80 backdrop-blur-sm transition-all duration-300 group-hover:bg-black/40">
+                    <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-gradient-to-r from-[#6a75f7]/20 via-[#00f2fe]/20 to-[#6a75f7]/20"></div>
+                    <div className="px-6 py-3 relative z-10">
+                      <span className="relative z-10 flex items-center justify-center gap-2 text-white group-hover:text-[#00f2fe] transition-colors">
+                        Register Now
+                        <ArrowRight className="h-4 w-4 transform group-hover:translate-x-1 transition-transform" />
+                      </span>
+                    </div>
+                  </div>
+                </button>
+              </div>
+            )}
 
             {/* Navigation Links */}
             <div className="px-4 pt-4 pb-2 space-y-1 overflow-y-auto flex-1">
@@ -172,13 +181,10 @@ export default function Navbar() {
                 <a
                   key={item.name}
                   href={item.href}
-                  onClick={() => {
-                    setIsMenuOpen(false);
-                    setActiveLink(item.href);
-                  }}
+                  onClick={() => setIsMenuOpen(false)}
                   className={cn(
                     "flex items-center px-4 py-3 rounded-lg text-base font-medium transition-all duration-300 group",
-                    activeLink === item.href
+                    location.pathname === item.href
                       ? "text-[#00f2fe] bg-white/5"
                       : "text-white hover:text-[#00f2fe] hover:bg-white/5"
                   )}
@@ -190,6 +196,25 @@ export default function Navbar() {
                   <ArrowRight className="h-4 w-4 opacity-0 group-hover:opacity-100 transition-opacity transform group-hover:translate-x-1" />
                 </a>
               ))}
+            </div>
+
+            {/* Register Now Button */}
+            <div className="p-4 border-t border-purple-500/20">
+              <button className="relative w-full overflow-hidden group">
+                <div className="absolute inset-0 w-full h-full transition-all duration-300">
+                  <div className="absolute inset-0 w-full h-full bg-gradient-to-r from-[#6a75f7] via-[#00f2fe] to-[#6a75f7] opacity-0 group-hover:opacity-100"></div>
+                  <div className="absolute -inset-[1px] bg-gradient-to-r from-[#6a75f7] via-[#00f2fe] to-[#6a75f7] transition-all duration-500"></div>
+                </div>
+                <div className="relative bg-[#0f0c29]/80 backdrop-blur-sm transition-all duration-300 group-hover:bg-[#0f0c29]/40">
+                  <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-gradient-to-r from-[#6a75f7]/20 via-[#00f2fe]/20 to-[#6a75f7]/20"></div>
+                  <div className="px-6 py-3 relative z-10">
+                    <span className="relative z-10 flex items-center justify-center gap-2 text-white group-hover:text-[#00f2fe] transition-colors">
+                      <a href="/register">Register Now</a>
+                      <ArrowRight className="h-4 w-4 transform group-hover:translate-x-1 transition-transform" />
+                    </span>
+                  </div>
+                </div>
+              </button>
             </div>
           </div>
         </div>
