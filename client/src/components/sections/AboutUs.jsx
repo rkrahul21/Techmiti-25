@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef, useCallback } from "react";
 import styled from "styled-components";
-import logoImage from "../../assets/logo.jpg";
+import logoImage from "../../assets/231531.jpg";
 
 const VideoBackground = styled.video`
   position: fixed;
