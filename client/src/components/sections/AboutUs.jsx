@@ -538,7 +538,7 @@ const AboutUs = () => {
     }, 5000);
 
     return () => clearInterval(interval);
-  }, [isDragging, currentSlide, totalSlides, isMobile, nextSlide]);
+  }, [isDragging, currentSlide, totalSlides, isMobile]);
 
   const nextSlide = useCallback(() => {
     if (!isMobile) return;
