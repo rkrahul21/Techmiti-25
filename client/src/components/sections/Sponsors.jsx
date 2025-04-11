@@ -182,7 +182,7 @@ const SponsorGrid = styled.div`
 
 const Sponsors = () => {
   return (
-    <SponsorsContainer>
+    <SponsorsContainer className="SponsorsContainer">
       <VideoBackground autoPlay muted loop playsInline>
         <source src="/bg-video.mp4" type="video/mp4" />
       </VideoBackground>
