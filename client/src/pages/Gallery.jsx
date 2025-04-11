@@ -1,19 +1,9 @@
-import React, { useState } from "react";
+import React from "react";
 import { motion } from "framer-motion";
 import { Image } from "lucide-react";
 import GlimpseData from "../data/GlimpseData";
 
 const Gallery = () => {
-  const [selectedImage, setSelectedImage] = useState(null);
-
-  const handleImageClick = (image) => {
-    setSelectedImage(image);
-  };
-
-  const handleCloseModal = () => {
-    setSelectedImage(null);
-  };
-
   return (
     <div className="min-h-screen bg-[#0f0c29] text-white relative">
       {/* Background Video - matching homepage style */}
@@ -58,8 +48,7 @@ const Gallery = () => {
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.5 }}
               whileHover={{ scale: 1.05 }}
-              className="relative group cursor-pointer"
-              onClick={() => handleImageClick(image)}
+              className="relative group"
             >
               <div className="aspect-w-16 aspect-h-9 overflow-hidden rounded-lg">
                 <img
@@ -72,43 +61,6 @@ const Gallery = () => {
             </motion.div>
           ))}
         </div>
-
-        {/* Modal for selected image */}
-        {selectedImage && (
-          <div className="fixed inset-0 bg-black/80 flex items-center justify-center z-50">
-            <motion.div
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0.9 }}
-              className="relative max-w-4xl w-full mx-4"
-            >
-              <button
-                onClick={handleCloseModal}
-                className="absolute -top-10 right-0 text-white hover:text-cyan-400 transition-colors"
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="h-8 w-8"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M6 18L18 6M6 6l12 12"
-                  />
-                </svg>
-              </button>
-              <img
-                src={selectedImage.url}
-                alt={`Gallery image ${selectedImage.id}`}
-                className="w-full h-auto rounded-lg"
-              />
-            </motion.div>
-          </div>
-        )}
       </div>
     </div>
   );
