@@ -12,7 +12,7 @@ const navItems = [
   { name: "Brochure", href: "/brochure", icon: "📋" },
   // { name: "Registration", href: "/register", icon: "📝" },
   { name: "Gallery", href: "/gallery", icon: "📸" },
-  { name: "Sponsors", href: "/sponsors", icon: "🤝" },
+  { name: "Sponsors", href: "/sponsors", icon: "🤝", scrollToSection: true },
   // { name: "Contact", href: "#contact", icon: "📞" },
 ];
 
@@ -40,6 +40,31 @@ export default function Navbar() {
 
   const handleRegisterClick = () => {
     navigate("/register");
+  };
+
+  const handleNavItemClick = (item, e) => {
+    if (item.scrollToSection) {
+      e.preventDefault();
+      
+      // If we're not on the home page, navigate there first
+      if (location.pathname !== "/") {
+        navigate("/");
+        
+        // Wait for navigation to complete before scrolling
+        setTimeout(() => {
+          const sponsorsSection = document.querySelector(".SponsorsContainer");
+          if (sponsorsSection) {
+            sponsorsSection.scrollIntoView({ behavior: "smooth" });
+          }
+        }, 100);
+      } else {
+        // We're already on the home page, just scroll
+        const sponsorsSection = document.querySelector(".SponsorsContainer");
+        if (sponsorsSection) {
+          sponsorsSection.scrollIntoView({ behavior: "smooth" });
+        }
+      }
+    }
   };
 
   const isRegisterPage = location.pathname === "/register";
@@ -86,6 +111,7 @@ export default function Navbar() {
               <a
                 key={item.name}
                 href={item.href}
+                onClick={(e) => handleNavItemClick(item, e)}
                 className={cn(
                   "px-6 py-2 text-md font-medium transition-all duration-300 relative group",
                   location.pathname === item.href
@@ -181,7 +207,10 @@ export default function Navbar() {
                 <a
                   key={item.name}
                   href={item.href}
-                  onClick={() => setIsMenuOpen(false)}
+                  onClick={(e) => {
+                    setIsMenuOpen(false);
+                    handleNavItemClick(item, e);
+                  }}
                   className={cn(
                     "flex items-center px-4 py-3 rounded-lg text-base font-medium transition-all duration-300 group",
                     location.pathname === item.href
