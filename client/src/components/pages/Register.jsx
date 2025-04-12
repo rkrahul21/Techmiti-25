@@ -1,9 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
+import axios from "axios";
 import {
   branchName,
   collegeName,
   batchCode,
+  // knowAbout,
   tshirtSizeValue,
 } from "@/constant/collegeData";
 import MessageBox from "../sections/MessageBox";
@@ -294,7 +296,8 @@ const SubmitButton = styled.button`
   }
 `;
 
-function Register() {
+export default function Register() {
+
   const [email, setEmail] = useState();
   const [phone, setPhone] = useState();
   const [password, setPassword] = useState();
@@ -305,7 +308,7 @@ function Register() {
   const [branch, setBranch] = useState();
   const [rollNo, setRollNo] = useState();
   const [batch, setBatch] = useState();
-  const [know, setKnow] = useState();
+  const [know, setKnow] = useState("website");
   const [isAccommodation, setIsAccommodation] = useState();
   const [tshirtSize, setTshirtSize] = useState();
   const [paymentMode, setPaymentMode] = useState();
@@ -319,8 +322,10 @@ function Register() {
   const [givenCollegeName, setGivenCollegeName] = useState();
   const [OtherCollegeName, setOtherCollegeName] = useState();
 
-  console.log("gender", gender, paymentMode);
-
+  const onPaymentModeChange = ({ target: { value } }) => {
+    setPaymentMode(value);
+  };
+    // setKnow("website");
   const allFill = () => {
     return (
       email &&
@@ -338,6 +343,57 @@ function Register() {
       password === confirmPass
     );
   };
+
+  useEffect(() => {
+    if (givenCollegeName === 'other') {
+      setCollege(OtherCollegeName)
+    } else {
+      setCollege(givenCollegeName)
+    }
+  }, [OtherCollegeName, givenCollegeName])
+
+  const submitHandler = async (e) => {
+    e.preventDefault();
+
+    setLoading(true);
+    try {
+      const  {data } = await axios.post(
+        "http://localhost:5000/api/user/create",
+        {
+          email,
+          phone,
+          password,
+          name,
+          gender,
+          college,
+          branch,
+          rollNo,
+          batch,
+          know,
+          isAccommodation,
+          tshirtSize,
+          paymentMode,
+          caCode,
+          transactionId,
+          receipt,
+        },
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
+      console.log("data in register.jsx", data);
+      console.log("techmitiid",data.data.techmitiId)  
+      setTechmitiId(data.data.techmitiId);
+      setLoading(false);
+      setSuccess(true);
+    } catch (err) {
+      setLoading(false);
+      setError(err.response.data.message);
+    }
+  };
+
 
   const validateEmail = (e) => {
     if (e.target.value) {
@@ -365,6 +421,7 @@ function Register() {
       }
     }
   };
+
   const validateMobile = (e) => {
     if (e.target.value) {
       const pattern = /^[6-9]\d{9}$/;
@@ -381,388 +438,339 @@ function Register() {
       }
     }
   };
+
+
+
   const validatePassword = (e) => {
     if (e.target.value) {
       if (password === e.target.value) {
         e.target.classList.remove("is-invalid");
         e.target.classList.add("is-valid");
-        setConfirmPass(e.target.value);
+        setConfirmPass(e.target.value)
       } else {
         e.target.classList.remove("is-valid");
         e.target.classList.add("is-invalid");
       }
     }
-  };
+  }
+
+
   const validateFile = (e) => {
     var file = e.target.files[0];
-    if (file && file.size / 1024 / 1024 < 2) {
+    if (file && (file.size / 1024 / 1024) < 2) {
       setReceipt(file);
     } else {
-      window.alert("file size should be less than 5 mb");
-      e.target.value = "";
+      window.alert('file size should be less than 5 mb');
+      e.target.value = '';
+
     }
-  };
+  }
 
-  const onPaymentModeChange = ({ target: { value } }) => {
-    setPaymentMode(value);
-  };
-
-  // form submit handler
-
-  const submitHandler = async (e) => {
-    e.preventDefault();
-
-    console.log(
-      email,
-      phone,
-      password,
-      name,
-      gender,
-      college,
-      branch,
-      rollNo,
-      batch,
-      know,
-      isAccommodation,
-      tshirtSize,
-      paymentMode,
-      caCode,
-      transactionId,
-      receipt
-    );
-    setLoading(true);
-    try {
-      const { data } = await fetch.post(
-        "/api/user/create",
-        {
-          email,
-          phone,
-          password,
-          name,
-          gender,
-          college,
-          branch,
-          rollNo,
-          batch,
-          know,
-          isAccommodation,
-          tshirtSize,
-          paymentMode,
-          caCode,
-          transactionId,
-          receipt,
-        },
-        {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-        }
-      );
-      setTechmitiId(data.data.techmitiId);
-      setLoading(false);
-      setSuccess(true);
-    } catch (err) {
-      setLoading(false);
-      setError(err.response.data.message);
-    }
-  };
 
   return (
-    <RegisterContainer>
-      <Title>
-        TechMITi'<span>25</span> Registration
-      </Title>
+    <div>
+      {loading ? (<div>Loading...</div>) : error ? (<div>error</div>) : success ? (<div>Congratulation you have registered successfully<br/> your TechmitiId:&{techmitiId}</div>) : (
+        <RegisterContainer>
+          <Title>
+            TechMITi'<span>25</span> Registration
+          </Title>
 
-      <ContactInfo>
-        <p>For all your queries, feel free to contact:</p>
-        <p>Person1: mobile number</p>
-        <p>Person2: mobile number</p>
-        <p>Person3: mobile number</p>
-      </ContactInfo>
+          <ContactInfo>
+            <p>For all your queries, feel free to contact:</p>
+            <p>Person1: mobile number</p>
+            <p>Person2: mobile number</p>
+            <p>Person3: mobile number</p>
+          </ContactInfo>
 
-      <Form onSubmit={submitHandler}>
-        <FormRow>
-          <FormGroup>
-            <label>Name*</label>
-            <Input
-              type="text"
-              required
-              placeholder="Enter your Name"
-              onChange={(e) => setName(e.target.value)}
-            />
-          </FormGroup>
-          <FormGroup>
-            <label>Email*</label>
-            <Input
-              type="email"
-              required
-              placeholder="Enter your Email ID"
-              onChange={validateEmail}
-            />
-          </FormGroup>
-        </FormRow>
+          <Form onSubmit={submitHandler} encType="multipart/form-data">
+            <FormRow>
+              <FormGroup>
+                <label>Full Name*</label>
+                <Input
+                  type="text"
+                  required
+                  placeholder="Enter your Name"
+                  onChange={(e) => setName(e.target.value)}
+                />
+              </FormGroup>
+              <FormGroup>
+                <label>Email*</label>
+                <Input
+                  type="email"
+                  required
+                  placeholder="Enter your Email ID"
+                  onChange={(e)=>validateEmail(e)}
+                />
+              </FormGroup>
+            </FormRow>
 
-        <FormRow>
-          <FormGroup>
-            <label>Password*</label>
-            <Input
-              type="password"
-              required
-              placeholder="Set Your Password"
-              onChange={(e) => setPassword(e.target.value)}
-            />
-          </FormGroup>
-          <FormGroup>
-            <label>Confirm Password*</label>
-            <Input
-              type="password"
-              required
-              placeholder="Confirm Password"
-              onChange={validatePassword}
-            />
-          </FormGroup>
-        </FormRow>
+            <FormRow>
+              <FormGroup>
+                <label>Password*</label>
+                <Input
+                  type="password"
+                  required
+                  placeholder="Set Your Password"
+                  onChange={(e) => setPassword(e.target.value)}
+                />
+              </FormGroup>
+              <FormGroup>
+                <label>Confirm Password*</label>
+                <Input
+                  type="password"
+                  required
+                  placeholder="Confirm Password"
+                  onChange={(e) => validatePassword(e)}
+                />
+              </FormGroup>
+            </FormRow>
 
-        <FormRow>
-          <FormGroup>
-            <label>Mobile Number*</label>
-            <div style={{ display: "flex", gap: "0.5rem" }}>
-              <Input
-                style={{ width: "60px", textAlign: "center" }}
-                value="+91"
-                disabled
-              />
-              <Input
-                type="number"
-                required
-                placeholder="Mobile Number"
-                onChange={validateMobile}
-              />
+            <FormRow>
+              <FormGroup>
+                <label>Mobile Number*</label>
+                <div style={{ display: "flex", gap: "0.5rem" }}>
+                  <Input
+                    style={{ width: "60px", textAlign: "center" }}
+                    value="+91"
+                    disabled
+                  />
+                  <Input
+                    type="number"
+                    required
+                    placeholder="Mobile Number"
+                    onChange={(e) => validateMobile(e)}
+                    maxLength={10}
+                  />
+                </div>
+              </FormGroup>
+              <FormGroup>
+                <label>Gender*</label>
+                <Select required onChange={(e) => setGender(e.target.value)}>
+                  <option value="">Select</option>
+                  <option value="male">Male</option>
+                  <option value="female">Female</option>
+                </Select>
+              </FormGroup>
+            </FormRow>
+
+            <FormRow>
+              <FormGroup>
+                <label>College*</label>
+                <Select required onChange={(e) => setGivenCollegeName(e.target.value)}>
+                  <option value="">Select One</option>
+                  {collegeName
+                    .sort((a, b) => a.college.localeCompare(b.college))
+                    .map((item, index) => (
+                      <option key={index} value={`${item.value}`}>
+                        {item.college}
+                      </option>
+                    ))}
+                    <option value="other">Other</option>
+                </Select>
+              </FormGroup>
+              <FormGroup>
+                <label>Branch*</label>
+                <Select required onChange={(e) => setBranch(e.target.value)}>
+                  <option value="">Select One</option>
+                  {branchName
+                    .sort((a, b) => a.branch.localeCompare(b.branch))
+                    .map((item, index) => (
+                      <option key={index} value={`${item.value}`}>
+                        {item.branch}
+                      </option>
+                    ))}
+                </Select>
+              </FormGroup>
+            </FormRow>
+
+            {givenCollegeName && givenCollegeName === "other" && (
+              <FormRow>
+                <FormGroup>
+                  <label>Enter College Name*</label>
+                  <Input
+                    type="text"
+                    required
+                    placeholder="Enter your College Name"
+                    onChange={(e) => setOtherCollegeName(e.target.value)}
+                  />
+                </FormGroup>
+              </FormRow>
+            )}
+
+            <FormRow>
+              <FormGroup>
+                <label>College Roll No*</label>
+                <Input
+                  type="text"
+                  required
+                  placeholder="Enter your Roll No"
+                  onChange={(e) => setRollNo(e.target.value)}
+                />
+              </FormGroup>
+              <FormGroup>
+                <label>Batch*</label>
+                <Select required onChange={(e) => setBatch(e.target.value)}>
+                  <option value="">Select One</option>
+                  {batchCode.map((item, index) => (
+                    <option key={index} value={`${item.value}`}>
+                      {item.batch}
+                    </option>
+                  ))}
+                </Select>
+              </FormGroup>
+            </FormRow>
+
+            <FormRow>
+              <FormGroup>
+                <label>T-shirt Size*</label>
+                <Select required onChange={(e) => setTshirtSize(e.target.value)}>
+                  <option value="">Select One</option>
+                  {tshirtSizeValue.map((item, index) => (
+                    <option key={index} value={`${item}`}>
+                      {item}
+                    </option>
+                  ))}
+                </Select>
+              </FormGroup>
+              <FormGroup>
+                <label>Do you need Accommodation*</label>
+                <Select
+                  required
+                  onChange={(e) => setIsAccommodation(e.target.value)}
+                >
+                  <option value="">Select One</option>
+                  <option value="yes">Yes</option>
+                  <option value="no">No</option>
+                </Select>
+              </FormGroup>
+            </FormRow>
+
+            <FormRow>
+              <RadioGroup>
+                <p>Payment Method*</p>
+                <label>
+                  <input
+                  id="default-radio-1"
+                    type="radio"
+                    name="payment"
+                    value="ca"
+                    checked={paymentMode === "ca"}
+                    onChange={onPaymentModeChange}
+                  />
+                  Through Campus Ambassador
+                </label>
+                <label>
+                  <input
+                    id="default-radio-2"
+                    type="radio"
+                    name="payment"
+                    value="bank"
+                    checked={paymentMode === "bank"}
+                    onChange={onPaymentModeChange}
+                  />
+                  Through Bank Account
+                </label>
+              </RadioGroup>
+            </FormRow>
+
+            {paymentMode && paymentMode === "ca" && (
+              <div>
+                <h3 style={{ color: "#6a75f7", marginBottom: "1rem" }}>
+                  Campus Ambassador
+                </h3>
+                <StyledMessageBox>
+                  Participants can pay registration fee of Rs 1100/- to Campus
+                  Ambassador of their college.
+                </StyledMessageBox>
+                <FormRow>
+                  <FormGroup>
+                    <label>Campus Ambassador TechMITi Code</label>
+                    <Input
+                      type="text"
+                      placeholder="Enter your CA Code"
+                      onChange={(e) => setCaCode(e.target.value)}
+                    />
+                  </FormGroup>
+                  <FormGroup>
+                    <label>Screenshot of Payment (less than 2 mb)*</label>
+                    <Input
+                      type="file"
+                      name='receipt'
+                      required
+                      onChange={(e) => validateFile(e)}
+                      accept="image/*"
+                    />
+                  </FormGroup>
+                </FormRow>
+              </div>
+            )}
+
+            {paymentMode === "bank" && (
+              <div>
+                <h3 style={{ color: "#6a75f7", marginBottom: "1rem" }}>
+                  Bank Account
+                </h3>
+                <StyledMessageBox>
+                  Participants can pay registration fee of Rs 1100/- on following
+                  bank account and upload the screenshot of payment:
+                </StyledMessageBox>
+                <BankDetails>
+                  <h4>Bank Details of Moxie:</h4>
+                  <p>
+                    A/c no: 3642274255
+                    <br />
+                    A/c Holder: MOXIE TECHNICAL CLUB MIT MUZAFFARPUR
+                    <br />
+                    IFSC code: CBIN0282034
+                    <br />
+                    Bank: Central Bank of India
+                    <br />
+                    Branch: Jhuran Chapra, Muzaffarpur (BH)
+                  </p>
+                </BankDetails>
+                <FormRow>
+                  <FormGroup>
+                    <label>Campus Ambassador TechMITi Code (Optional)</label>
+                    <Input
+                      type="text"
+                      placeholder="Enter your CA Code"
+                      onChange={(e) => setCaCode(e.target.value)}
+                    />
+                  </FormGroup>
+                  <FormGroup>
+                    <label>Transaction ID*</label>
+                    <Input
+                      type="text"
+                      required
+                      placeholder="Enter Transaction ID"
+                      onChange={(e) => setTransactionId(e.target.value)}
+                    />
+                  </FormGroup>
+                </FormRow>
+                <FormRow>
+                  <FormGroup>
+                    <label>Screenshot of Payment (less than 2 MB)*</label>
+                    <Input
+                      type="file"
+                      name="receipt"
+                      required
+                      onChange={(e) => validateFile(e)}
+                      accept="image/*"
+                    />
+                  </FormGroup>
+                </FormRow>
+              </div>
+            )}
+
+            <div style={{ textAlign: "center" }}>
+              <SubmitButton type="submit" id="regSubmit" disabled={!allFill()}>
+                Register
+              </SubmitButton>
             </div>
-          </FormGroup>
-          <FormGroup>
-            <label>Gender*</label>
-            <Select required onChange={(e) => setGender(e.target.value)}>
-              <option value="">Select</option>
-              <option value="male">Male</option>
-              <option value="female">Female</option>
-            </Select>
-          </FormGroup>
-        </FormRow>
-
-        <FormRow>
-          <FormGroup>
-            <label>College*</label>
-            <Select required onChange={(e) => setCollege(e.target.value)}>
-              <option value="">Select One</option>
-              {collegeName
-                .sort((a, b) => a.college.localeCompare(b.college))
-                .map((item, index) => (
-                  <option key={index} value={item.value}>
-                    {item.college}
-                  </option>
-                ))}
-            </Select>
-          </FormGroup>
-          <FormGroup>
-            <label>Branch*</label>
-            <Select required onChange={(e) => setBranch(e.target.value)}>
-              <option value="">Select One</option>
-              {branchName
-                .sort((a, b) => a.branch.localeCompare(b.branch))
-                .map((item, index) => (
-                  <option key={index} value={item.value}>
-                    {item.branch}
-                  </option>
-                ))}
-            </Select>
-          </FormGroup>
-        </FormRow>
-
-        {college === "others" && (
-          <FormRow>
-            <FormGroup>
-              <label>College Name*</label>
-              <Input
-                type="text"
-                required
-                placeholder="Enter your College Name"
-                onChange={(e) => setOtherCollegeName(e.target.value)}
-              />
-            </FormGroup>
-          </FormRow>
-        )}
-
-        <FormRow>
-          <FormGroup>
-            <label>College Roll No*</label>
-            <Input
-              type="text"
-              required
-              placeholder="Enter your Roll No"
-              onChange={(e) => setRollNo(e.target.value)}
-            />
-          </FormGroup>
-          <FormGroup>
-            <label>Batch*</label>
-            <Select required onChange={(e) => setBatch(e.target.value)}>
-              <option value="">Select One</option>
-              {batchCode.map((item, index) => (
-                <option key={index} value={item.value}>
-                  {item.batch}
-                </option>
-              ))}
-            </Select>
-          </FormGroup>
-        </FormRow>
-
-        <FormRow>
-          <FormGroup>
-            <label>T-shirt Size*</label>
-            <Select required onChange={(e) => setTshirtSize(e.target.value)}>
-              <option value="">Select One</option>
-              {tshirtSizeValue.map((item, index) => (
-                <option key={index} value={item}>
-                  {item}
-                </option>
-              ))}
-            </Select>
-          </FormGroup>
-          <FormGroup>
-            <label>Do you need Accommodation*</label>
-            <Select
-              required
-              onChange={(e) => setIsAccommodation(e.target.value)}
-            >
-              <option value="">Select One</option>
-              <option value="yes">Yes</option>
-              <option value="no">No</option>
-            </Select>
-          </FormGroup>
-        </FormRow>
-
-        <FormRow>
-          <RadioGroup>
-            <p>Payment Method*</p>
-            <label>
-              <input
-                type="radio"
-                name="payment"
-                value="ca"
-                checked={paymentMode === "ca"}
-                onChange={onPaymentModeChange}
-              />
-              Through Campus Ambassador
-            </label>
-            <label>
-              <input
-                type="radio"
-                name="payment"
-                value="bank"
-                checked={paymentMode === "bank"}
-                onChange={onPaymentModeChange}
-              />
-              Through Bank Account
-            </label>
-          </RadioGroup>
-        </FormRow>
-
-        {paymentMode === "ca" && (
-          <div>
-            <h3 style={{ color: "#6a75f7", marginBottom: "1rem" }}>
-              Campus Ambassador
-            </h3>
-            <StyledMessageBox>
-              Participants can pay registration fee of Rs 1100/- to Campus
-              Ambassador of their college.
-            </StyledMessageBox>
-            <FormRow>
-              <FormGroup>
-                <label>Campus Ambassador TechMITi Code*</label>
-                <Input
-                  type="text"
-                  required
-                  placeholder="Enter your CA Code"
-                  onChange={(e) => setCaCode(e.target.value)}
-                />
-              </FormGroup>
-              <FormGroup>
-                <label>Screenshot of Payment (less than 2 MB)*</label>
-                <Input
-                  type="file"
-                  required
-                  onChange={(e) => validateFile(e)}
-                  accept="image/*"
-                />
-              </FormGroup>
-            </FormRow>
-          </div>
-        )}
-
-        {paymentMode === "bank" && (
-          <div>
-            <h3 style={{ color: "#6a75f7", marginBottom: "1rem" }}>
-              Bank Account
-            </h3>
-            <StyledMessageBox>
-              Participants can pay registration fee of Rs 1100/- on following
-              bank account and upload the screenshot of payment:
-            </StyledMessageBox>
-            <BankDetails>
-              <h4>Bank Details of Moxie:</h4>
-              <p>
-                A/c no: 3642274255
-                <br />
-                A/c Holder: MOXIE TECHNICAL CLUB MIT MUZAFFARPUR
-                <br />
-                IFSC code: CBIN0282034
-                <br />
-                Bank: Central Bank of India
-                <br />
-                Branch: Jhuran Chapra, Muzaffarpur (BH)
-              </p>
-            </BankDetails>
-            <FormRow>
-              <FormGroup>
-                <label>Campus Ambassador TechMITi Code (Optional)</label>
-                <Input
-                  type="text"
-                  placeholder="Enter your CA Code"
-                  onChange={(e) => setCaCode(e.target.value)}
-                />
-              </FormGroup>
-              <FormGroup>
-                <label>Transaction ID*</label>
-                <Input
-                  type="text"
-                  required
-                  placeholder="Enter Transaction ID"
-                  onChange={(e) => setTransactionId(e.target.value)}
-                />
-              </FormGroup>
-            </FormRow>
-            <FormRow>
-              <FormGroup>
-                <label>Screenshot of Payment (less than 2 MB)*</label>
-                <Input
-                  type="file"
-                  required
-                  onChange={(e) => validateFile(e)}
-                  accept="image/*"
-                />
-              </FormGroup>
-            </FormRow>
-          </div>
-        )}
-
-        <div style={{ textAlign: "center" }}>
-          <SubmitButton type="submit" id="regSubmit" disabled={!allFill()}>
-            Register
-          </SubmitButton>
-        </div>
-      </Form>
-    </RegisterContainer>
+          </Form>
+        </RegisterContainer>
+      )}
+    </div>
   );
 }
 
-export default Register;
