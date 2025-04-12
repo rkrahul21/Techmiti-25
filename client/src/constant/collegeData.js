@@ -234,9 +234,6 @@ export const branchName = [
     {
       college: "Satyam International Institute of Technology, Patna",
       value: "Satyam_Patna",
-    },{
-      college:"others",
-      value:"others"
     }
   ];
   export const batchCode = [
