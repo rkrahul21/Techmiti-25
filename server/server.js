@@ -1,7 +1,7 @@
 const express = require("express");
 const cors = require("cors");
 const dotenv = require("dotenv");
-const connectDB = require("./config/database");
+const connectDB = require("./src/config/database");
 
 // Load environment variables
 dotenv.config();
@@ -17,10 +17,10 @@ app.use(cors());
 app.use(express.json());
 
 // Routes
-const pingRoutes = require("./routes/pingRoutes");
-const registrationRoutes = require("./routes/registrationRoutes");
-const authRoutes = require("./routes/authRoutes");
-const eventRoutes = require("./routes/eventRoutes");
+const pingRoutes = require("./src/routes/pingRoutes");
+const registrationRoutes = require("./src/routes/registrationRoutes");
+const authRoutes = require("./src/routes/authRoutes");
+const eventRoutes = require("./src/routes/eventRoutes");
 
 app.use("/api", pingRoutes);
 app.use("/api", registrationRoutes);
