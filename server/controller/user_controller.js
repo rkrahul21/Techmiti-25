@@ -1,15 +1,20 @@
 const User = require("../models/user");
 const Team = require("../models/teams");
 const bcrypt = require("bcryptjs");
+const jwt = require("jsonwebtoken");
 const path = require("path");
-const { S3Client, PutObjectCommand, DeleteObjectCommand } = require('@aws-sdk/client-s3');
+const {
+  S3Client,
+  PutObjectCommand,
+  DeleteObjectCommand,
+} = require("@aws-sdk/client-s3");
 
 const s3 = new S3Client({
-  region: process.env.AWS_REGION || 'your-region',
+  region: process.env.AWS_REGION || "your-region",
   credentials: {
     accessKeyId: process.env.AWS_ACCESS_KEY_ID,
-    secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY
-  }
+    secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
+  },
 });
 
 module.exports.create = async function (req, res) {
@@ -22,7 +27,9 @@ module.exports.create = async function (req, res) {
 
       console.log("Uploaded file:", req.file);
 
-      const filename = `${req.file.fieldname}-${req.body.phone}-${Date.now()}${path.extname(req.file.originalname)}`;
+      const filename = `${req.file.fieldname}-${
+        req.body.phone
+      }-${Date.now()}${path.extname(req.file.originalname)}`;
       const params = {
         Bucket: process.env.AWS_BUCKET_NAME,
         Key: filename,
@@ -74,17 +81,20 @@ module.exports.create = async function (req, res) {
 
           return res.status(200).json({
             data: { techmitiId: savedUser.techmitiId },
-            message: 'User created',
+            message: "User created",
           });
-
         } else {
           // Delete uploaded file from S3 if user already exists
-          await s3.send(new DeleteObjectCommand({
-            Bucket: process.env.AWS_BUCKET_NAME,
-            Key: filename
-          }));
+          await s3.send(
+            new DeleteObjectCommand({
+              Bucket: process.env.AWS_BUCKET_NAME,
+              Key: filename,
+            })
+          );
 
-          return res.status(409).json({ message: "Phone/Email already exists" });
+          return res
+            .status(409)
+            .json({ message: "Phone/Email already exists" });
         }
       } catch (s3Error) {
         console.error("S3 error:", s3Error);
@@ -94,5 +104,57 @@ module.exports.create = async function (req, res) {
   } catch (err) {
     console.log("Error in creating user:", err);
     return res.status(500).json({ message: "Error in creating user" });
+  }
+};
+
+module.exports.login = async function (req, res) {
+  try {
+    const { email, password } = req.body;
+
+    // Find user by email
+    const user = await User.findOne({ email });
+    if (!user) {
+      return res.status(401).json({ message: "Invalid email or password" });
+    }
+
+    // Check password
+    const isMatch = await bcrypt.compare(password, user.password);
+    if (!isMatch) {
+      return res.status(401).json({ message: "Invalid email or password" });
+    }
+
+    // Generate JWT token
+    const token = jwt.sign(
+      { _id: user._id.toString() },
+      process.env.JWT_SECRET,
+      { expiresIn: "24h" }
+    );
+
+    // Return user data and token
+    res.status(200).json({
+      user: {
+        name: user.name,
+        email: user.email,
+        techmitiId: user.techmitiId,
+        college: user.college,
+        branch: user.branch,
+        isPaymentVerified: user.isPaymentVerified,
+      },
+      token,
+    });
+  } catch (error) {
+    console.error("Login error:", error);
+    res.status(500).json({ message: "Server error" });
+  }
+};
+
+module.exports.logout = async function (req, res) {
+  try {
+    // Since we're using JWT, we don't need to do anything server-side
+    // The client should remove the token from their storage
+    res.status(200).json({ message: "Logged out successfully" });
+  } catch (error) {
+    console.error("Logout error:", error);
+    res.status(500).json({ message: "Server error" });
   }
 };

@@ -9,6 +9,7 @@ import {
   tshirtSizeValue,
 } from "@/constant/collegeData";
 import MessageBox from "../sections/MessageBox";
+import { useNavigate } from "react-router-dom";
 
 const RegisterContainer = styled.div`
   min-height: 100vh;
@@ -296,8 +297,95 @@ const SubmitButton = styled.button`
   }
 `;
 
-export default function Register() {
+const StatusContainer = styled.div`
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 4rem 1rem;
+  background: linear-gradient(
+    135deg,
+    rgba(13, 17, 23, 0.98) 0%,
+    rgba(21, 25, 31, 0.99) 100%
+  );
+`;
 
+const StatusCard = styled.div`
+  background: rgba(106, 117, 247, 0.05);
+  backdrop-filter: blur(10px);
+  border-radius: 20px;
+  border: 1px solid rgba(106, 117, 247, 0.1);
+  padding: 3rem;
+  text-align: center;
+  max-width: 600px;
+  width: 100%;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+`;
+
+const StatusTitle = styled.h2`
+  font-size: 2rem;
+  font-family: "Orbitron", sans-serif;
+  margin-bottom: 1.5rem;
+  background: linear-gradient(120deg, #6a75f7, #00f2fe);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 0 20px rgba(106, 117, 247, 0.3);
+`;
+
+const StatusMessage = styled.p`
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 1.1rem;
+  line-height: 1.6;
+  margin-bottom: 1rem;
+`;
+
+const TechmitiId = styled.span`
+  display: inline-block;
+  background: rgba(106, 117, 247, 0.1);
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  color: #6a75f7;
+  font-weight: 600;
+  margin-top: 1rem;
+`;
+
+const LoadingSpinner = styled.div`
+  width: 50px;
+  height: 50px;
+  border: 3px solid rgba(106, 117, 247, 0.3);
+  border-radius: 50%;
+  border-top-color: #6a75f7;
+  animation: spin 1s ease-in-out infinite;
+  margin: 0 auto;
+
+  @keyframes spin {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+`;
+
+const ButtonGroup = styled.div`
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  margin-top: 1.5rem;
+`;
+
+const LoginButton = styled.button`
+  background: transparent;
+  border: 1px solid rgba(106, 117, 247, 0.3);
+  color: #6a75f7;
+
+  &:hover {
+    background: rgba(106, 117, 247, 0.1);
+    border-color: #6a75f7;
+  }
+`;
+
+export default function Register() {
   const [email, setEmail] = useState();
   const [phone, setPhone] = useState();
   const [password, setPassword] = useState();
@@ -321,11 +409,12 @@ export default function Register() {
   const [techmitiId, setTechmitiId] = useState();
   const [givenCollegeName, setGivenCollegeName] = useState();
   const [OtherCollegeName, setOtherCollegeName] = useState();
+  const navigate = useNavigate();
 
   const onPaymentModeChange = ({ target: { value } }) => {
     setPaymentMode(value);
   };
-    // setKnow("website");
+  // setKnow("website");
   const allFill = () => {
     return (
       email &&
@@ -345,20 +434,30 @@ export default function Register() {
   };
 
   useEffect(() => {
-    if (givenCollegeName === 'other') {
-      setCollege(OtherCollegeName)
+    if (givenCollegeName === "other") {
+      setCollege(OtherCollegeName);
     } else {
-      setCollege(givenCollegeName)
+      setCollege(givenCollegeName);
     }
-  }, [OtherCollegeName, givenCollegeName])
+  }, [OtherCollegeName, givenCollegeName]);
+
+  useEffect(() => {
+    // Check if there's a saved success state
+    const savedSuccess = sessionStorage.getItem("registrationSuccess");
+    const savedTechmitiId = sessionStorage.getItem("techmitiId");
+    if (savedSuccess === "true" && savedTechmitiId) {
+      setSuccess(true);
+      setTechmitiId(savedTechmitiId);
+    }
+  }, []);
 
   const submitHandler = async (e) => {
     e.preventDefault();
 
     setLoading(true);
     try {
-      const  {data } = await axios.post(
-        "http://localhost:5000/api/user/create",
+      const { data } = await axios.post(
+        "http://localhost:3004/api/user/create",
         {
           email,
           phone,
@@ -384,8 +483,11 @@ export default function Register() {
         }
       );
       console.log("data in register.jsx", data);
-      console.log("techmitiid",data.data.techmitiId)  
+      console.log("techmitiid", data.data.techmitiId);
       setTechmitiId(data.data.techmitiId);
+      // Save success state and techmitiId to sessionStorage
+      sessionStorage.setItem("registrationSuccess", "true");
+      sessionStorage.setItem("techmitiId", data.data.techmitiId);
       setLoading(false);
       setSuccess(true);
     } catch (err) {
@@ -393,7 +495,6 @@ export default function Register() {
       setError(err.response.data.message);
     }
   };
-
 
   const validateEmail = (e) => {
     if (e.target.value) {
@@ -439,41 +540,140 @@ export default function Register() {
     }
   };
 
-
-
   const validatePassword = (e) => {
     if (e.target.value) {
       if (password === e.target.value) {
         e.target.classList.remove("is-invalid");
         e.target.classList.add("is-valid");
-        setConfirmPass(e.target.value)
+        setConfirmPass(e.target.value);
       } else {
         e.target.classList.remove("is-valid");
         e.target.classList.add("is-invalid");
       }
     }
-  }
-
+  };
 
   const validateFile = (e) => {
     var file = e.target.files[0];
-    if (file && (file.size / 1024 / 1024) < 2) {
+    if (file && file.size / 1024 / 1024 < 2) {
       setReceipt(file);
     } else {
-      window.alert('file size should be less than 5 mb');
-      e.target.value = '';
-
+      window.alert("file size should be less than 5 mb");
+      e.target.value = "";
     }
-  }
+  };
 
+  const handleLoginClick = () => {
+    navigate("/login");
+  };
+
+  const handleNewRegistration = () => {
+    // Clear session storage
+    sessionStorage.removeItem("registrationSuccess");
+    sessionStorage.removeItem("techmitiId");
+
+    // Reset all form states
+    setEmail(undefined);
+    setPhone(undefined);
+    setPassword(undefined);
+    setConfirmPass(undefined);
+    setName(undefined);
+    setGender(undefined);
+    setCollege(undefined);
+    setBranch(undefined);
+    setRollNo(undefined);
+    setBatch(undefined);
+    setKnow("website");
+    setIsAccommodation(undefined);
+    setTshirtSize(undefined);
+    setPaymentMode(undefined);
+    setCaCode(undefined);
+    setTransactionId(undefined);
+    setReceipt(null);
+    setGivenCollegeName(undefined);
+    setOtherCollegeName(undefined);
+
+    // Reset success state to show registration form
+    setSuccess(false);
+    setTechmitiId(undefined);
+  };
 
   return (
     <div>
-      {loading ? (<div>Loading...</div>) : error ? (<div>error</div>) : success ? (<div>Congratulation you have registered successfully<br/> your TechmitiId:&{techmitiId}</div>) : (
+      {loading ? (
+        <StatusContainer>
+          <StatusCard>
+            <LoadingSpinner />
+            <StatusTitle>Processing Registration</StatusTitle>
+            <StatusMessage>
+              Please wait while we process your registration...
+            </StatusMessage>
+          </StatusCard>
+        </StatusContainer>
+      ) : error ? (
+        <StatusContainer>
+          <StatusCard>
+            <StatusTitle>Registration Error</StatusTitle>
+            <StatusMessage>{error}</StatusMessage>
+            <ButtonGroup>
+              <LoginButton onClick={() => setError("")}>Try Again</LoginButton>
+              <LoginButton onClick={handleLoginClick}>Go to Login</LoginButton>
+            </ButtonGroup>
+          </StatusCard>
+        </StatusContainer>
+      ) : success ? (
+        <StatusContainer>
+          <StatusCard>
+            <StatusTitle>Registration Successful!</StatusTitle>
+            <StatusMessage>
+              Congratulations! You have successfully registered for TechMITi'25
+            </StatusMessage>
+            <StatusMessage>
+              Your Techmiti ID: <TechmitiId>{techmitiId}</TechmitiId>
+            </StatusMessage>
+            <StatusMessage>
+              Congratulations, your application has been successfully processed,
+              and you have been assigned a TechMITi'25 ID. Please note that it
+              may take up to 24 hours for your payment to be verified by the
+              organizers. Once your payment is verified, you will be able to
+              register for events. If you have any questions or concerns about
+              the event, please contact the organizers directly.
+            </StatusMessage>
+            <ButtonGroup>
+              <LoginButton onClick={handleLoginClick}>
+                Login to your account
+              </LoginButton>
+              <LoginButton
+                onClick={handleNewRegistration}
+                style={{
+                  background: "rgba(106, 117, 247, 0.1)",
+                  color: "#00f2fe",
+                }}
+              >
+                Register Another Account
+              </LoginButton>
+            </ButtonGroup>
+          </StatusCard>
+        </StatusContainer>
+      ) : (
         <RegisterContainer>
           <Title>
             TechMITi'<span>25</span> Registration
           </Title>
+
+          <ButtonGroup style={{ marginBottom: "2rem" }}>
+            <LoginButton
+              onClick={handleLoginClick}
+              style={{
+                padding: "0.75rem 2rem",
+                borderRadius: "8px",
+                fontSize: "1rem",
+                transition: "all 0.3s ease",
+              }}
+            >
+              Already have an account? Login
+            </LoginButton>
+          </ButtonGroup>
 
           <ContactInfo>
             <p>For all your queries, feel free to contact:</p>
@@ -499,7 +699,7 @@ export default function Register() {
                   type="email"
                   required
                   placeholder="Enter your Email ID"
-                  onChange={(e)=>validateEmail(e)}
+                  onChange={(e) => validateEmail(e)}
                 />
               </FormGroup>
             </FormRow>
@@ -556,7 +756,10 @@ export default function Register() {
             <FormRow>
               <FormGroup>
                 <label>College*</label>
-                <Select required onChange={(e) => setGivenCollegeName(e.target.value)}>
+                <Select
+                  required
+                  onChange={(e) => setGivenCollegeName(e.target.value)}
+                >
                   <option value="">Select One</option>
                   {collegeName
                     .sort((a, b) => a.college.localeCompare(b.college))
@@ -565,7 +768,7 @@ export default function Register() {
                         {item.college}
                       </option>
                     ))}
-                    <option value="other">Other</option>
+                  <option value="other">Other</option>
                 </Select>
               </FormGroup>
               <FormGroup>
@@ -623,7 +826,10 @@ export default function Register() {
             <FormRow>
               <FormGroup>
                 <label>T-shirt Size*</label>
-                <Select required onChange={(e) => setTshirtSize(e.target.value)}>
+                <Select
+                  required
+                  onChange={(e) => setTshirtSize(e.target.value)}
+                >
                   <option value="">Select One</option>
                   {tshirtSizeValue.map((item, index) => (
                     <option key={index} value={`${item}`}>
@@ -650,7 +856,7 @@ export default function Register() {
                 <p>Payment Method*</p>
                 <label>
                   <input
-                  id="default-radio-1"
+                    id="default-radio-1"
                     type="radio"
                     name="payment"
                     value="ca"
@@ -695,7 +901,7 @@ export default function Register() {
                     <label>Screenshot of Payment (less than 2 mb)*</label>
                     <Input
                       type="file"
-                      name='receipt'
+                      name="receipt"
                       required
                       onChange={(e) => validateFile(e)}
                       accept="image/*"
@@ -711,8 +917,8 @@ export default function Register() {
                   Bank Account
                 </h3>
                 <StyledMessageBox>
-                  Participants can pay registration fee of Rs 1100/- on following
-                  bank account and upload the screenshot of payment:
+                  Participants can pay registration fee of Rs 1100/- on
+                  following bank account and upload the screenshot of payment:
                 </StyledMessageBox>
                 <BankDetails>
                   <h4>Bank Details of Moxie:</h4>
@@ -773,4 +979,3 @@ export default function Register() {
     </div>
   );
 }
-

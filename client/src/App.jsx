@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import Admin from "./pages/Admin";
 import AdminLogin from "./pages/AdminLogin";
 import Home from "./Home";
@@ -10,6 +10,7 @@ import Schedule from "./pages/Schedule";
 import Brochure from "./pages/Brochure";
 import Sponsors from "./pages/Sponsors";
 import Gallery from "./pages/Gallery";
+import Login from "./pages/Login";
 
 // hlh
 function App() {
@@ -26,6 +27,7 @@ function App() {
         <Route path="/brochure" element={<Brochure />} />
         <Route path="/sponsors" element={<Sponsors />} />
         <Route path="/gallery" element={<Gallery />} />
+        <Route path="/login" element={<Login />} />
       </Routes>
     </div>
   );

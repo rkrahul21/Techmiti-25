@@ -1,7 +1,7 @@
 const express = require("express");
 const cors = require("cors");
 const mongoose = require("mongoose");
-const path = require('path');
+const path = require("path");
 const dotenv = require("dotenv");
 
 // Load environment variables
@@ -13,20 +13,21 @@ const app = express();
 const PORT = process.env.PORT || 5000;
 
 // Middleware
-app.use(cors({
-  origin: '*'
-}));
+app.use(
+  cors({
+    origin: "http://localhost:5173", // your frontend URL
+    credentials: true, // allow cookies/auth headers
+  })
+);
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-app.use('/api' ,require('./routes'))
+app.use("/api", require("./routes"));
 
-
-app.use(express.static(path.join(__dirname, 'build')));
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'build/index.html'));
+app.use(express.static(path.join(__dirname, "build")));
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "build/index.html"));
 });
-
 
 // Routes
 // const pingRoutes = require("./src/routes/pingRoutes");
@@ -39,14 +40,14 @@ app.get('*', (req, res) => {
 // app.use("/api", authRoutes);
 // app.use("/api", eventRoutes);
 
-
-mongoose.set('strictQuery', true);
+mongoose.set("strictQuery", true);
 mongoose
   .connect(
-    process.env.MONGODB_URI || "mongodb+srv://moxie2k21:gxVG3Ood1kXNvfuJ@cluster0.pimdror.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0",
+    process.env.MONGODB_URI ||
+      "mongodb+srv://moxie2k21:gxVG3Ood1kXNvfuJ@cluster0.pimdror.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
   )
   .then(() => {
-    console.log('Connected to the database ');
+    console.log("Connected to the database ");
     app.listen(PORT, function (err) {
       if (err) {
         console.log(`Error in running the server :${err}`);
