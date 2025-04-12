@@ -1,6 +1,5 @@
 const User = require("../models/user");
 const Team = require("../models/teams");
-const utils = require("../utils");
 const bcrypt = require("bcryptjs");
 const path = require("path");
 const { S3Client, PutObjectCommand, DeleteObjectCommand } = require('@aws-sdk/client-s3');
