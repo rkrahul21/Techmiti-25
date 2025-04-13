@@ -1,9 +1,10 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import { Menu, X, Terminal, Code2, ArrowRight } from "lucide-react";
+import { Menu, X, Terminal, Code2, ArrowRight, LogOut } from "lucide-react";
 import { Button } from "./ui/button";
 import { cn } from "../lib/utils";
 import { useNavigate, useLocation } from "react-router-dom";
+import { useAuth } from "../context/AuthContext";
 
 const navItems = [
   { name: "Home", href: "/", icon: "🏠" },
@@ -13,6 +14,7 @@ const navItems = [
   // { name: "Registration", href: "/register", icon: "📝" },
   { name: "Gallery", href: "/gallery", icon: "📸" },
   { name: "Sponsors", href: "/sponsors", icon: "🤝", scrollToSection: true },
+  // { name: "Login", href: "/login", icon: "🔑" },
   // { name: "Contact", href: "#contact", icon: "📞" },
 ];
 
@@ -22,6 +24,7 @@ export default function Navbar() {
   const [activeLink, setActiveLink] = useState("#home");
   const navigate = useNavigate();
   const location = useLocation();
+  const { isAuthenticated, logout, user } = useAuth();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -45,11 +48,11 @@ export default function Navbar() {
   const handleNavItemClick = (item, e) => {
     if (item.scrollToSection) {
       e.preventDefault();
-      
+
       // If we're not on the home page, navigate there first
       if (location.pathname !== "/") {
         navigate("/");
-        
+
         // Wait for navigation to complete before scrolling
         setTimeout(() => {
           const sponsorsSection = document.querySelector(".SponsorsContainer");
@@ -67,7 +70,13 @@ export default function Navbar() {
     }
   };
 
+  const handleLogout = async () => {
+    await logout();
+    navigate("/");
+  };
+
   const isRegisterPage = location.pathname === "/register";
+  const isLoginPage = location.pathname === "/login";
 
   return (
     <nav
@@ -107,49 +116,75 @@ export default function Navbar() {
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-2">
-            {navItems.map((item) => (
-              <a
-                key={item.name}
-                href={item.href}
-                onClick={(e) => handleNavItemClick(item, e)}
-                className={cn(
-                  "px-6 py-2 text-md font-medium transition-all duration-300 relative group",
-                  location.pathname === item.href
-                    ? "text-[#00f2fe]"
-                    : "text-white/80 hover:text-[#00f2fe]"
-                )}
-              >
-                <span className="absolute left-2 top-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-opacity">
-                  {item.icon}
-                </span>
-                <span className="relative inline-block left-0 group-hover:left-3 transition-all duration-300">
-                  {item.name}
-                </span>
-                <span
-                  className={cn(
-                    "absolute bottom-0 left-0 h-[2px] bg-[#00f2fe] transition-all duration-300",
-                    location.pathname === item.href
-                      ? "w-full"
-                      : "w-0 group-hover:w-full"
-                  )}
-                ></span>
-              </a>
-            ))}
+            {navItems.map(
+              (item) =>
+                (!isLoginPage || item.name !== "Login") && (
+                  <a
+                    key={item.name}
+                    href={item.href}
+                    onClick={(e) => handleNavItemClick(item, e)}
+                    className={cn(
+                      "px-6 py-2 text-md font-medium transition-all duration-300 relative group",
+                      location.pathname === item.href
+                        ? "text-[#00f2fe]"
+                        : "text-white/80 hover:text-[#00f2fe]"
+                    )}
+                  >
+                    <span className="absolute left-2 top-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-opacity">
+                      {item.icon}
+                    </span>
+                    <span className="relative inline-block left-0 group-hover:left-3 transition-all duration-300">
+                      {item.name}
+                    </span>
+                    <span
+                      className={cn(
+                        "absolute bottom-0 left-0 h-[2px] bg-[#00f2fe] transition-all duration-300",
+                        location.pathname === item.href
+                          ? "w-full"
+                          : "w-0 group-hover:w-full"
+                      )}
+                    ></span>
+                  </a>
+                )
+            )}
             <div className="relative group ml-12">
-              {!isRegisterPage && (
-                <>
-                  <div className="absolute -inset-[2px] bg-gradient-to-r from-[#6a75f7] via-[#00f2fe] to-[#6a75f7] rounded-lg opacity-50 group-hover:opacity-100 transition-all duration-500"></div>
+              {!isAuthenticated ? (
+                !isRegisterPage &&
+                !isLoginPage && (
+                  <>
+                    <div className="absolute -inset-[2px] bg-gradient-to-r from-[#6a75f7] via-[#00f2fe] to-[#6a75f7] rounded-lg opacity-50 group-hover:opacity-100 transition-all duration-500"></div>
+                    <Button
+                      variant="outline"
+                      className="relative px-6 py-2 text-sm font-medium bg-[#1C1C27] border-0 text-white hover:bg-[#2A2A3A] transition-all duration-300 rounded-lg overflow-hidden group-hover:scale-[1.02]"
+                    >
+                      <div className="absolute inset-0 bg-gradient-to-r from-[#6a75f7]/20 via-[#00f2fe]/20 to-[#6a75f7]/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                      <span className="relative z-10 flex items-center gap-2">
+                        <a href="/register">Register Now</a>
+                        <ArrowRight className="h-4 w-4 transform group-hover:translate-x-1 transition-transform" />
+                      </span>
+                    </Button>
+                  </>
+                )
+              ) : (
+                <div className="flex items-center gap-4">
                   <Button
                     variant="outline"
-                    className="relative px-6 py-2 text-sm font-medium bg-[#1C1C27] border-0 text-white hover:bg-[#2A2A3A] transition-all duration-300 rounded-lg overflow-hidden group-hover:scale-[1.02]"
+                    className="relative px-6 py-2 text-sm font-medium bg-[#1C1C27] border-0 text-white hover:bg-[#2A2A3A] transition-all duration-300 rounded-lg overflow-hidden"
+                    onClick={() => navigate("/login")}
                   >
-                    <div className="absolute inset-0 bg-gradient-to-r from-[#6a75f7]/20 via-[#00f2fe]/20 to-[#6a75f7]/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                    <span className="relative z-10">Profile</span>
+                  </Button>
+                  <Button
+                    variant="outline"
+                    className="relative px-6 py-2 text-sm font-medium bg-[#1C1C27] border-0 text-white hover:bg-[#2A2A3A] transition-all duration-300 rounded-lg overflow-hidden"
+                    onClick={handleLogout}
+                  >
                     <span className="relative z-10 flex items-center gap-2">
-                      <a href="/register">Register Now</a>
-                      <ArrowRight className="h-4 w-4 transform group-hover:translate-x-1 transition-transform" />
+                      Logout
+                      <LogOut className="h-4 w-4" />
                     </span>
                   </Button>
-                </>
+                </div>
               )}
             </div>
           </div>
