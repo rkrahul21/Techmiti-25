@@ -637,18 +637,36 @@ const AboutUs = () => {
       </VideoBackground>
       <MainContainer>
         <ContentWrapper>
-          <Title>About Techmiti</Title>
+          <Title>About
+          <span class="text-5xl font-bold ml-2 group">
+          <span class="bg-gradient-to-r from-[#4facfe] via-[#6a75f7] to-[#00f2fe] bg-clip-text text-transparent group-hover:bg-gradient-to-r group-hover:from-white group-hover:via-white group-hover:to-white transition-all duration-500">Tech</span>
+          <span class="bg-gradient-to-r from-[#4facfe] via-[#6a75f7] to-[#00f2fe] bg-clip-text text-transparent group-hover:bg-gradient-to-r group-hover:from-[#FFD700] group-hover:via-[#FFA500] group-hover:to-[#FF8C00] transition-all duration-500">MIT</span>
+          <span class="bg-gradient-to-r from-[#4facfe] via-[#6a75f7] to-[#00f2fe] bg-clip-text text-transparent group-hover:bg-gradient-to-r group-hover:from-white group-hover:via-white group-hover:to-white transition-all duration-500">i'25</span>
+          </span></Title>
           <FlexContainer>
             <ContentCard>
-              <h2>Welcome to Techmiti 2025</h2>
+              <h2>Welcome to 
+                <span class="text-3xl font-bold ml-2 inline-block">
+                <span class="bg-gradient-to-r from-[#4facfe] via-[#6a75f7] to-[#00f2fe] bg-clip-text text-transparent hover:bg-gradient-to-r hover:from-white hover:via-white hover:to-white transition-all duration-500">Tech</span>
+                <span class="bg-gradient-to-r from-[#4facfe] via-[#6a75f7] to-[#00f2fe] bg-clip-text text-transparent hover:bg-gradient-to-r hover:from-[#FFD700] hover:via-[#FFA500] hover:to-[#FF8C00] transition-all duration-500">MIT</span>
+                <span class="bg-gradient-to-r from-[#4facfe] via-[#6a75f7] to-[#00f2fe] bg-clip-text text-transparent hover:bg-gradient-to-r hover:from-white hover:via-white hover:to-white transition-all duration-500">i'25</span>
+          </span></h2>
               <p>
-                Techmiti is the annual technical festival of MIT Muzaffarpur,
+              <span class="text-1xl font-bold ml-2 inline-block">
+          <span class="bg-gradient-to-r from-[#4facfe] via-[#6a75f7] to-[#00f2fe] bg-clip-text text-transparent hover:bg-gradient-to-r hover:from-white hover:via-white hover:to-white transition-all duration-500">Tech</span>
+          <span class="bg-gradient-to-r from-[#4facfe] via-[#6a75f7] to-[#00f2fe] bg-clip-text text-transparent hover:bg-gradient-to-r hover:from-[#FFD700] hover:via-[#FFA500] hover:to-[#FF8C00] transition-all duration-500">MIT</span>
+          <span class="bg-gradient-to-r from-[#4facfe] via-[#6a75f7] to-[#00f2fe] bg-clip-text text-transparent hover:bg-gradient-to-r hover:from-white hover:via-white hover:to-white transition-all duration-500">i'25</span>
+          </span> is the annual technical festival of MIT Muzaffarpur,
                 bringing together the brightest minds in technology and
                 innovation. This three-day extravaganza is a celebration of
                 technology, creativity, and learning.
               </p>
               <p>
-                With a legacy of excellence, Techmiti 2025 promises to be bigger
+                With a legacy of excellence,<span class="text-1xl font-bold ml-2 inline-block">
+          <span class="bg-gradient-to-r from-[#4facfe] via-[#6a75f7] to-[#00f2fe] bg-clip-text text-transparent hover:bg-gradient-to-r hover:from-white hover:via-white hover:to-white transition-all duration-500">Tech</span>
+          <span class="bg-gradient-to-r from-[#4facfe] via-[#6a75f7] to-[#00f2fe] bg-clip-text text-transparent hover:bg-gradient-to-r hover:from-[#FFD700] hover:via-[#FFA500] hover:to-[#FF8C00] transition-all duration-500">MIT</span>
+          <span class="bg-gradient-to-r from-[#4facfe] via-[#6a75f7] to-[#00f2fe] bg-clip-text text-transparent hover:bg-gradient-to-r hover:from-white hover:via-white hover:to-white transition-all duration-500">i'25</span>
+          </span> 2025 promises to be bigger
                 and better than ever before. Join us for an unforgettable
                 experience filled with competitions, workshops, technical talks,
                 and networking opportunities.

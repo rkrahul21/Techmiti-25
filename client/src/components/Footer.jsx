@@ -358,7 +358,13 @@ function Footer() {
               <Logo src={logo} alt="TechMITi'25 Logo" />
             </LogoInner>
           </LogoWrapper>
-          <Title>TechMITi'25</Title>
+          <Title>
+          <span class="text-2xl font-bold ml-2 group">
+          <span class="bg-gradient-to-r from-[#4facfe] via-[#6a75f7] to-[#00f2fe] bg-clip-text text-transparent group-hover:bg-gradient-to-r group-hover:from-white group-hover:via-white group-hover:to-white transition-all duration-500">Tech</span>
+          <span class="bg-gradient-to-r from-[#4facfe] via-[#6a75f7] to-[#00f2fe] bg-clip-text text-transparent group-hover:bg-gradient-to-r group-hover:from-[#FFD700] group-hover:via-[#FFA500] group-hover:to-[#FF8C00] transition-all duration-500">MIT</span>
+          <span class="bg-gradient-to-r from-[#4facfe] via-[#6a75f7] to-[#00f2fe] bg-clip-text text-transparent group-hover:bg-gradient-to-r group-hover:from-white group-hover:via-white group-hover:to-white transition-all duration-500">i'25</span>
+          </span>
+          </Title>
         </LogoContainer>
 
         <Navigation>
