@@ -1,8 +1,8 @@
-const mongoose = require('mongoose');
-const multer = require('multer');
-const path = require('path');
+const mongoose = require("mongoose");
+const multer = require("multer");
+const path = require("path");
 
-const RECEIPT_PATH = path.posix.join('/uploads', 'receipt');
+const RECEIPT_PATH = path.posix.join("/uploads", "receipt");
 const userSchema = new mongoose.Schema(
   {
     name: {
@@ -24,7 +24,7 @@ const userSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-    
+
     phone: {
       type: String,
       required: true,
@@ -65,19 +65,19 @@ const userSchema = new mongoose.Schema(
     },
     isReceiptDeleted: {
       type: Boolean,
-      default: false
+      default: false,
     },
     transactionId: {
       type: String,
     },
-  
+
     teams: [
       {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'Team',
+        ref: "Team",
       },
     ],
-    
+
     isPaymentInitilized: {
       type: Boolean,
       default: false,
@@ -103,9 +103,9 @@ let storage = multer.memoryStorage();
 //statics methods
 
 userSchema.statics.uploadedReceipt = multer({ storage: storage }).single(
-  'receipt'
+  "receipt"
 );
 userSchema.statics.receiptPath = RECEIPT_PATH;
 
-const User = mongoose.model('User', userSchema);
+const User = mongoose.model("User", userSchema);
 module.exports = User;

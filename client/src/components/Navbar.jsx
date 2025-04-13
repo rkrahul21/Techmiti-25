@@ -13,7 +13,7 @@ const navItems = [
   { name: "Brochure", href: "/brochure", icon: "📋" },
   // { name: "Registration", href: "/register", icon: "📝" },
   { name: "Gallery", href: "/gallery", icon: "📸" },
-  { name: "Sponsors", href: "/sponsors", icon: "🤝", scrollToSection: true },
+  { name: "Sponsors", href: "/sponsors", icon: "🤝" },
   // { name: "Login", href: "/login", icon: "🔑" },
   // { name: "Contact", href: "#contact", icon: "📞" },
 ];
@@ -24,7 +24,7 @@ export default function Navbar() {
   const [activeLink, setActiveLink] = useState("#home");
   const navigate = useNavigate();
   const location = useLocation();
-  const { isAuthenticated, logout, user } = useAuth();
+  const { isAuthenticated, logout, user, login } = useAuth();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -174,16 +174,18 @@ export default function Navbar() {
                   >
                     <span className="relative z-10">Profile</span>
                   </Button>
-                  <Button
-                    variant="outline"
-                    className="relative px-6 py-2 text-sm font-medium bg-[#1C1C27] border-0 text-white hover:bg-[#2A2A3A] transition-all duration-300 rounded-lg overflow-hidden"
-                    onClick={handleLogout}
-                  >
-                    <span className="relative z-10 flex items-center gap-2">
-                      Logout
-                      <LogOut className="h-4 w-4" />
-                    </span>
-                  </Button>
+                  {user && user.isPaymentVerified && (
+                    <Button
+                      variant="outline"
+                      className="relative px-6 py-2 text-sm font-medium bg-[#1C1C27] border-0 text-white hover:bg-[#2A2A3A] transition-all duration-300 rounded-lg overflow-hidden"
+                      onClick={handleLogout}
+                    >
+                      <span className="relative z-10 flex items-center gap-2">
+                        Logout
+                        <LogOut className="h-4 w-4" />
+                      </span>
+                    </Button>
+                  )}
                 </div>
               )}
             </div>

@@ -223,7 +223,7 @@ export default function Login() {
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
-  const { login, user } = useAuth();
+  const { login, user, logout } = useAuth();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -233,8 +233,17 @@ export default function Login() {
     const result = await login(email, password);
 
     if (result.success) {
-      // Login successful, user state will be updated automatically
-      setLoading(false);
+      if (result.user.isPaymentVerified) {
+        // Login successful, user state will be updated automatically
+        setLoading(false);
+      } else {
+        setError(
+          "Your payment is not verified yet. Please complete the payment verification process."
+        );
+        setLoading(false);
+        // Logout the user since payment is not verified
+        logout();
+      }
     } else {
       setError(result.message);
       setLoading(false);
@@ -243,6 +252,21 @@ export default function Login() {
 
   // If user is already logged in, show profile
   if (user) {
+    if (!user.isPaymentVerified) {
+      return (
+        <LoginContainer>
+          <ProfileCard>
+            <ProfileTitle>Payment Verification Required</ProfileTitle>
+            <ProfileInfo>
+              Your payment is not verified yet. Please complete the payment
+              verification process to access your account.
+            </ProfileInfo>
+            <SubmitButton onClick={() => logout()}>Login Again</SubmitButton>
+          </ProfileCard>
+        </LoginContainer>
+      );
+    }
+
     return (
       <LoginContainer>
         <ProfileCard>

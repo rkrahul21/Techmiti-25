@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { useNavigate } from "react-router-dom";
 import {
   Terminal,
   Code2,
@@ -28,6 +29,7 @@ const Events = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [terminalText, setTerminalText] = useState("");
   const [terminalVisible, setTerminalVisible] = useState(false);
+  const navigate = useNavigate();
 
   // Simulate loading
   useEffect(() => {
@@ -472,19 +474,19 @@ const Events = () => {
                         />
                         <span>Rule Book</span>
                       </a>
-                      <a
-                        href={event.registrationLink}
-                        target="_blank"
-                        rel="noopener noreferrer"
+                      <button
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          navigate(`/register/${event.id}`);
+                        }}
                         className="flex-1 flex items-center justify-center gap-2 bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-600 hover:to-blue-600 text-white py-2 rounded-lg transition-all duration-300 group-hover:shadow-lg group-hover:shadow-cyan-500/20"
-                        onClick={(e) => e.stopPropagation()}
                       >
                         <ExternalLink
                           size={18}
                           className="group-hover:animate-pulse"
                         />
                         <span>Register</span>
-                      </a>
+                      </button>
                     </div>
                   </div>
                 </motion.div>
@@ -631,15 +633,16 @@ const Events = () => {
                     <FileText size={16} className="sm:w-5 sm:h-5" />
                     <span>Rule Book</span>
                   </a>
-                  <a
-                    href={selectedEvent.registrationLink}
-                    target="_blank"
-                    rel="noopener noreferrer"
+                  <button
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      navigate(`/register/${selectedEvent.id}`);
+                    }}
                     className="px-3 py-1.5 sm:px-4 sm:py-2 rounded-lg bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-600 hover:to-blue-600 text-white transition-all duration-300 flex items-center justify-center gap-1.5 sm:gap-2 text-sm sm:text-base"
                   >
                     <ExternalLink size={16} className="sm:w-5 sm:h-5" />
                     <span>Register Now</span>
-                  </a>
+                  </button>
                 </div>
               </div>
             </motion.div>
