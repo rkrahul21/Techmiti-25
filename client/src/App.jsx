@@ -5,12 +5,14 @@ import AdminLogin from "./pages/AdminLogin";
 import Home from "./Home";
 import Register from "./components/pages/Register";
 import Events from "./pages/Events";
-import EventDetail from "./pages/EventDetails";
+// import EventDetail from "./pages/EventDetails";
 import Schedule from "./pages/Schedule";
 import Brochure from "./pages/Brochure";
 import Sponsors from "./pages/Sponsors";
 import Gallery from "./pages/Gallery";
 import Login from "./pages/Login";
+import RegistrationForm from "./pages/RegistrationForm";
+import RegistrationSuccess from "./pages/RegistrationSuccess";
 
 // hlh
 function App() {
@@ -19,7 +21,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/event" element={<Events />} />
-        <Route path="/events/detail" element={<EventDetail />} />
+        {/* <Route path="/events/detail" element={<EventDetail />} /> */}
         <Route path="/admin" element={<Admin />} />
         <Route path="/admin/login" element={<AdminLogin />} />
         <Route path="/register" element={<Register />} />
@@ -28,6 +30,11 @@ function App() {
         <Route path="/sponsors" element={<Sponsors />} />
         <Route path="/gallery" element={<Gallery />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/register/:eventId" element={<RegistrationForm />} />
+        <Route
+          path="/registration-success/:eventId"
+          element={<RegistrationSuccess />}
+        />
       </Routes>
     </div>
   );
