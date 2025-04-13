@@ -212,8 +212,8 @@ export default function Navbar() {
       {isMenuOpen && (
         <div className="md:hidden fixed top-16 right-0 w-64 h-[calc(100vh-4rem)] bg-[#0f0c29]/95 backdrop-blur-lg border-l border-purple-500/20 transform transition-transform duration-300 ease-in-out">
           <div className="flex flex-col h-full">
-            {/* Register Now Button at the top */}
-            {!isRegisterPage && (
+            {/* Register Now Button at the top - only show if not authenticated */}
+            {!isAuthenticated && !isRegisterPage && (
               <div className="p-4 border-b border-white/10">
                 <button
                   className="relative w-full overflow-hidden group"
@@ -235,6 +235,61 @@ export default function Navbar() {
                     </div>
                   </div>
                 </button>
+              </div>
+            )}
+
+            {/* Profile and Logout buttons for authenticated users */}
+            {isAuthenticated && (
+              <div className="p-4 border-b border-white/10 space-y-2">
+                <button
+                  className="relative w-full overflow-hidden group"
+                  onClick={() => {
+                    setIsMenuOpen(false);
+                    navigate("/login");
+                  }}
+                >
+                  {/* Gradient Border */}
+                  <div className="absolute inset-0 w-full h-full transition-all duration-300">
+                    <div className="absolute inset-0 w-full h-full bg-gradient-to-r from-[#6a75f7] via-[#00f2fe] to-[#6a75f7] opacity-0 group-hover:opacity-100"></div>
+                    <div className="absolute -inset-[1px] bg-gradient-to-r from-[#6a75f7] via-[#00f2fe] to-[#6a75f7] transition-all duration-500"></div>
+                  </div>
+                  {/* Button Shape with Gradient Background */}
+                  <div className="relative bg-black/80 backdrop-blur-sm transition-all duration-300 group-hover:bg-black/40">
+                    <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-gradient-to-r from-[#6a75f7]/20 via-[#00f2fe]/20 to-[#6a75f7]/20"></div>
+                    <div className="px-6 py-3 relative z-10">
+                      <span className="relative z-10 flex items-center justify-center gap-2 text-white group-hover:text-[#00f2fe] transition-colors">
+                        Profile
+                        <ArrowRight className="h-4 w-4 transform group-hover:translate-x-1 transition-transform" />
+                      </span>
+                    </div>
+                  </div>
+                </button>
+
+                {user && user.isPaymentVerified && (
+                  <button
+                    className="relative w-full overflow-hidden group"
+                    onClick={() => {
+                      setIsMenuOpen(false);
+                      handleLogout();
+                    }}
+                  >
+                    {/* Gradient Border */}
+                    <div className="absolute inset-0 w-full h-full transition-all duration-300">
+                      <div className="absolute inset-0 w-full h-full bg-gradient-to-r from-[#6a75f7] via-[#00f2fe] to-[#6a75f7] opacity-0 group-hover:opacity-100"></div>
+                      <div className="absolute -inset-[1px] bg-gradient-to-r from-[#6a75f7] via-[#00f2fe] to-[#6a75f7] transition-all duration-500"></div>
+                    </div>
+                    {/* Button Shape with Gradient Background */}
+                    <div className="relative bg-black/80 backdrop-blur-sm transition-all duration-300 group-hover:bg-black/40">
+                      <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-gradient-to-r from-[#6a75f7]/20 via-[#00f2fe]/20 to-[#6a75f7]/20"></div>
+                      <div className="px-6 py-3 relative z-10">
+                        <span className="relative z-10 flex items-center justify-center gap-2 text-white group-hover:text-[#00f2fe] transition-colors">
+                          Logout
+                          <LogOut className="h-4 w-4" />
+                        </span>
+                      </div>
+                    </div>
+                  </button>
+                )}
               </div>
             )}
 
@@ -262,25 +317,6 @@ export default function Navbar() {
                   <ArrowRight className="h-4 w-4 opacity-0 group-hover:opacity-100 transition-opacity transform group-hover:translate-x-1" />
                 </a>
               ))}
-            </div>
-
-            {/* Register Now Button */}
-            <div className="p-4 border-t border-purple-500/20">
-              <button className="relative w-full overflow-hidden group">
-                <div className="absolute inset-0 w-full h-full transition-all duration-300">
-                  <div className="absolute inset-0 w-full h-full bg-gradient-to-r from-[#6a75f7] via-[#00f2fe] to-[#6a75f7] opacity-0 group-hover:opacity-100"></div>
-                  <div className="absolute -inset-[1px] bg-gradient-to-r from-[#6a75f7] via-[#00f2fe] to-[#6a75f7] transition-all duration-500"></div>
-                </div>
-                <div className="relative bg-[#0f0c29]/80 backdrop-blur-sm transition-all duration-300 group-hover:bg-[#0f0c29]/40">
-                  <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-gradient-to-r from-[#6a75f7]/20 via-[#00f2fe]/20 to-[#6a75f7]/20"></div>
-                  <div className="px-6 py-3 relative z-10">
-                    <span className="relative z-10 flex items-center justify-center gap-2 text-white group-hover:text-[#00f2fe] transition-colors">
-                      <a href="/register">Register Now</a>
-                      <ArrowRight className="h-4 w-4 transform group-hover:translate-x-1 transition-transform" />
-                    </span>
-                  </div>
-                </div>
-              </button>
             </div>
           </div>
         </div>
