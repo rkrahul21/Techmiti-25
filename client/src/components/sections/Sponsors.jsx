@@ -187,7 +187,7 @@ const Sponsors = () => {
         <source src="/bg-video.mp4" type="video/mp4" />
       </VideoBackground>
       <ContentWrapper>
-        <Title>Our Sponsors</Title>
+        <Title>Our Past Sponsors</Title>
 
         <HorizontalSponsorsContainer>
           <HorizontalSection>
@@ -233,15 +233,7 @@ const Sponsors = () => {
             <SponsorCard>
               <img src="https://i.imgur.com/7mE2L8v.png" alt="Internshala" />
             </SponsorCard>
-            <SponsorCard>
-              <img src="https://i.imgur.com/7mE2L8v.png" alt="Internshala" />
-            </SponsorCard>
-            <SponsorCard>
-              <img src="https://i.imgur.com/7mE2L8v.png" alt="Internshala" />
-            </SponsorCard>
-            <SponsorCard>
-              <img src="https://i.imgur.com/7mE2L8v.png" alt="Internshala" />
-            </SponsorCard>
+            
           </SponsorGrid>
         </Section>
       </ContentWrapper>

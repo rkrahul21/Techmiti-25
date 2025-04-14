@@ -59,7 +59,7 @@ const RegistrationSuccess = () => {
             <span>Your team has been successfully registered</span>
           </div>
 
-          <div className="flex items-center gap-3">
+          {/* <div className="flex items-center gap-3">
             <svg
               className="h-5 w-5 text-green-400"
               fill="none"
@@ -74,7 +74,7 @@ const RegistrationSuccess = () => {
               />
             </svg>
             <span>Event details have been sent to your email</span>
-          </div>
+          </div> */}
         </div>
 
         <div className="mt-8 flex flex-col sm:flex-row gap-3 justify-center">
@@ -88,7 +88,7 @@ const RegistrationSuccess = () => {
 
         <p className="text-sm text-gray-400 mt-8">
           Need help? Contact us at{" "}
-          <span className="text-cyan-400">support@techmiti.com</span>
+          <span className="text-cyan-400">moxiemit@gmail.com</span>
         </p>
       </div>
     </div>
