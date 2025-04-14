@@ -62,7 +62,7 @@ module.exports.create = async function (req, res) {
             isAccommodation: req.body.isAccommodation,
             tshirtSize: req.body.tshirtSize,
             paymentMode: req.body.paymentMode,
-            caCode: req.body.caCode,
+            caCode: req.body.caCode || "",
             transactionId: req.body.transactionId,
             techmitiId: `TM25${req.body.phone}`,
             isPaymentInitilized: true,

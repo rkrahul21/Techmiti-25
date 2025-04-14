@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import axios from "axios";
+import qrImage from "./qr.jpg";
 import {
   branchName,
   collegeName,
@@ -677,9 +678,9 @@ export default function Register() {
 
           <ContactInfo>
             <p>For all your queries, feel free to contact:</p>
-            <p>Person1: mobile number</p>
-            <p>Person2: mobile number</p>
-            <p>Person3: mobile number</p>
+            <p>Ashwani Kumar : 7488239311</p>
+            <p>Rahul Kumar : 8102140127</p>
+            <p>Om Kumar: 6203442712</p>
           </ContactInfo>
 
           <Form onSubmit={submitHandler} encType="multipart/form-data">
@@ -863,7 +864,7 @@ export default function Register() {
                     checked={paymentMode === "ca"}
                     onChange={onPaymentModeChange}
                   />
-                  Through Campus Ambassador
+                  Through QR Code
                 </label>
                 <label>
                   <input
@@ -885,18 +886,81 @@ export default function Register() {
                   Campus Ambassador
                 </h3>
                 <StyledMessageBox>
-                  Participants can pay registration fee of Rs 1100/- to Campus
-                  Ambassador of their college.
+                  Participants can pay registration fee of Rs 1000/
                 </StyledMessageBox>
+
+                {/* QR Code Section */}
+                <div
+                  style={{
+                    margin: "1.5rem 0",
+                    padding: "1rem",
+                    backgroundColor: "#1a1a2e",
+                    borderRadius: "8px",
+                    border: "1px solid #2d2d42",
+                    textAlign: "center",
+                  }}
+                >
+                  <h4 style={{ color: "#6a75f7", marginBottom: "0.5rem" }}>
+                    Scan to Pay via UPI
+                  </h4>
+                  <div
+                    style={{
+                      display: "flex",
+                      justifyContent: "center",
+                      marginBottom: "1rem",
+                    }}
+                  >
+                    <img
+                      src={qrImage} // Replace with your actual QR code image path
+                      alt="Payment QR Code"
+                      style={{
+                        width: "200px",
+                        height: "200px",
+                        border: "1px solid #3a3a5a",
+                        borderRadius: "8px",
+                      }}
+                    />
+                  </div>
+                  <p
+                    style={{
+                      color: "#a0a0c0",
+                      fontSize: "0.9rem",
+                      marginBottom: "0.5rem",
+                    }}
+                  >
+                    UPI ID: kr03ankit@oksbi
+                  </p>
+                  <p
+                    style={{
+                      color: "#d0d0f0",
+                      fontWeight: "bold",
+                      fontSize: "0.9rem",
+                    }}
+                  >
+                    Amount: ₹1000
+                  </p>
+                </div>
+
                 <FormRow>
                   <FormGroup>
-                    <label>Campus Ambassador TechMITi Code</label>
+                    <label>Campus Ambassador TechMITi Code (Optional)</label>
                     <Input
                       type="text"
                       placeholder="Enter your CA Code"
                       onChange={(e) => setCaCode(e.target.value)}
                     />
                   </FormGroup>
+                  <FormGroup>
+                    <label>Transaction ID*</label>
+                    <Input
+                      type="text"
+                      required
+                      placeholder="Enter Transaction ID"
+                      onChange={(e) => setTransactionId(e.target.value)}
+                    />
+                  </FormGroup>
+                </FormRow>
+                <FormRow>
                   <FormGroup>
                     <label>Screenshot of Payment (less than 2 mb)*</label>
                     <Input
@@ -917,7 +981,7 @@ export default function Register() {
                   Bank Account
                 </h3>
                 <StyledMessageBox>
-                  Participants can pay registration fee of Rs 1100/- on
+                  Participants can pay registration fee of Rs 1000/- on
                   following bank account and upload the screenshot of payment:
                 </StyledMessageBox>
                 <BankDetails>

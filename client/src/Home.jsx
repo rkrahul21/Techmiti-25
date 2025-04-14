@@ -12,7 +12,7 @@ function Home() {
 
       <AboutUs />
       <Sponsors />
-      <Footer />
+      {/* <Footer /> */}
     </div>
   );
 }

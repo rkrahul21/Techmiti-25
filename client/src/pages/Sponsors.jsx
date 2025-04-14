@@ -5,7 +5,7 @@ import { Award, Star, Handshake, Trophy } from "lucide-react";
 const sponsorData = {
   "Title Sponsor": [
     {
-      name: "MitMII",
+      name: "Sample Company",
       image: "/images/mit_logo.png", // Updated path to correct image location
       description: "US Tech Company",
     },
