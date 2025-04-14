@@ -759,7 +759,7 @@ const AboutUs = () => {
                 <CarouselSlide $slideWidth={slideWidth}>
                   <FeatureBox>
                     <div className="icon">🏛️</div>
-                    <h3>40+ Elite Colleges</h3>
+                    <h3>50+ Elite Colleges</h3>
                     <p>
                       Participation from top engineering colleges across the
                       country.
@@ -779,7 +779,7 @@ const AboutUs = () => {
                 <CarouselSlide $slideWidth={slideWidth}>
                   <FeatureBox>
                     <div className="icon">💰</div>
-                    <h3>₹2L+ Prize Pool</h3>
+                    <h3>₹200K Prize Pool</h3>
                     <p>
                       Massive prize pool for winners across different
                       competitions.

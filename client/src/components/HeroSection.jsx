@@ -191,7 +191,7 @@ const HeroSection = () => {
                     className="mt-6 sm:mt-8 md:mt-10"
                   >
                     <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-gray-200 mb-4 sm:mb-5 md:mb-6 max-w-2xl mx-auto font-medium">
-                      Annual Technical Fest of MIT Muzaffarpur
+                      Annual Tech-fest of MIT Muzaffarpur
                     </p>
 
                     {/* Enhanced date display with eye-catching styling */}

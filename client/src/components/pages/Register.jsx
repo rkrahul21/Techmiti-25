@@ -241,7 +241,7 @@ const BankDetails = styled.div`
   border-radius: 12px;
   margin: 1.5rem 0;
   color: rgba(255, 255, 255, 0.9);
-  text-align: center;
+  text-align:start;
   border: 1px solid rgba(106, 117, 247, 0.1);
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
 
@@ -676,9 +676,9 @@ export default function Register() {
             </LoginButton>
           </ButtonGroup>
 
-          <ContactInfo>
+          <ContactInfo className="flex flex-col items-start justify-center">
             <p>For all your queries, feel free to contact:</p>
-            <p>Ashwani Kumar : 7488239311</p>
+            <p>Ashwini Kumar : 7488239311</p>
             <p>Rahul Kumar : 8102140127</p>
             <p>Om Kumar: 6203442712</p>
           </ContactInfo>
@@ -882,12 +882,10 @@ export default function Register() {
 
             {paymentMode && paymentMode === "ca" && (
               <div>
-                <h3 style={{ color: "#6a75f7", marginBottom: "1rem" }}>
-                  Campus Ambassador
-                </h3>
-                <StyledMessageBox>
+                
+                <div className="bg-[#1d98bc] p-2 rounded-md text-white text-center">
                   Participants can pay registration fee of Rs 1000/
-                </StyledMessageBox>
+                </div>
 
                 {/* QR Code Section */}
                 <div
@@ -980,22 +978,22 @@ export default function Register() {
                 <h3 style={{ color: "#6a75f7", marginBottom: "1rem" }}>
                   Bank Account
                 </h3>
-                <StyledMessageBox>
+                <div className="bg-[#1d98bc] p-2 rounded-md text-white text-center">
                   Participants can pay registration fee of Rs 1000/- on
                   following bank account and upload the screenshot of payment:
-                </StyledMessageBox>
-                <BankDetails>
-                  <h4>Bank Details of Moxie:</h4>
+                </div>
+                <BankDetails >
+                  <h4>Bank Details :</h4>
                   <p>
-                    A/c no: 3642274255
+                    A/c no: 35021241716
                     <br />
-                    A/c Holder: MOXIE TECHNICAL CLUB MIT MUZAFFARPUR
+                    A/c Holder: Ankit kumar Singh
                     <br />
-                    IFSC code: CBIN0282034
+                    IFSC code: SBIN0003027
                     <br />
-                    Bank: Central Bank of India
+                    Bank: State Bank of India
                     <br />
-                    Branch: Jhuran Chapra, Muzaffarpur (BH)
+                    Branch: Dumraon, Buxar (BH)
                   </p>
                 </BankDetails>
                 <FormRow>
