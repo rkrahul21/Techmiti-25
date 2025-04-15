@@ -11,6 +11,7 @@ import {
 } from "@/constant/collegeData";
 import MessageBox from "../sections/MessageBox";
 import { useNavigate } from "react-router-dom";
+import { url } from "@/utils";
 
 const RegisterContainer = styled.div`
   min-height: 100vh;
@@ -415,6 +416,7 @@ export default function Register() {
   const onPaymentModeChange = ({ target: { value } }) => {
     setPaymentMode(value);
   };
+  console.log("url", url);
   // setKnow("website");
   const allFill = () => {
     return (
@@ -458,7 +460,7 @@ export default function Register() {
     setLoading(true);
     try {
       const { data } = await axios.post(
-        "http://localhost:3004/api/user/create",
+        `${url}/user/create`,
         {
           email,
           phone,
