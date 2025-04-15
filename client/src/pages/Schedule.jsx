@@ -114,14 +114,23 @@ const Schedule = () => {
         >
           <div className="flex items-center justify-center mb-4">
             <Terminal className="w-8 h-8 md:w-12 md:h-12 text-cyan-400 mr-3 md:mr-4" />
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold bg-gradient-to-r from-purple-400 via-pink-500 to-cyan-400 bg-clip-text text-transparent">
-              Event Timeline
-            </h1>
+            <h1 className="text-4xl md:text-5xl font-bold relative group">
+                <span className="bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent group-hover:from-purple-400 group-hover:via-cyan-400 group-hover:to-blue-500 group-hover:bg-[length:200%_auto] group-hover:animate-gradient-pulse transition-all duration-500">
+                  Event Timeline
+                </span>
+                <div className="absolute -top-1 -right-1 w-2 h-2 bg-cyan-400 rounded-full animate-ping"></div>
+                <div className="absolute -bottom-1 -left-1 w-2 h-2 bg-purple-400 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                <div className="absolute -bottom-1 -right-1 w-2 h-2 bg-blue-400 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300 delay-75"></div>
+              </h1>
           </div>
           <div className="relative">
             <div className="absolute -inset-1 bg-gradient-to-r from-purple-600/20 to-cyan-500/20 rounded-full blur"></div>
             <p className="text-lg md:text-xl text-gray-300 max-w-2xl mx-auto mb-6 md:mb-8 relative">
-              &lt;Plan your <span className="text-cyan-400">TECHMITI</span>{" "}
+              &lt;Plan your <span className="text-cyan-400"><span class="text-1xl font-bold ml-2 group inline-block">
+          <span class="bg-gradient-to-r from-[#4facfe] via-[#6a75f7] to-[#00f2fe] bg-clip-text text-transparent group-hover:bg-gradient-to-r group-hover:from-white group-hover:via-white group-hover:to-white transition-all duration-500">Tech</span>
+          <span class="bg-gradient-to-r from-[#4facfe] via-[#6a75f7] to-[#00f2fe] bg-clip-text text-transparent group-hover:bg-gradient-to-r group-hover:from-[#FFD700] group-hover:via-[#FFA500] group-hover:to-[#FF8C00] transition-all duration-500">MIT</span>
+          <span class="bg-gradient-to-r from-[#4facfe] via-[#6a75f7] to-[#00f2fe] bg-clip-text text-transparent group-hover:bg-gradient-to-r group-hover:from-white group-hover:via-white group-hover:to-white transition-all duration-500">i'25</span>
+          </span></span>{" "}
               experience with our comprehensive event schedule /&gt;
             </p>
           </div>

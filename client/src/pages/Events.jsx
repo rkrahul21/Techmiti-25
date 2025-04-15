@@ -110,10 +110,11 @@ const Events = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-[#0f0c29] via-[#302b63] to-[#24243e] text-white relative overflow-hidden">
+    <div className="min-h-screen bg-[#0f0c29] text-white relative flex items-center justify-center">
       {/* Background Video */}
-      <div className="fixed inset-0 w-full h-full overflow-hidden -z-10">
+      <div className="fixed top-0 left-0 w-full h-full object-cover opacity-20 z-0">
         <video
+          src="/bg-video.mp4"
           autoPlay
           loop
           muted
@@ -212,7 +213,12 @@ const Events = () => {
               <div className="absolute -inset-1 bg-gradient-to-r from-cyan-600/20 to-blue-500/20 rounded-full blur"></div>
               <p className="relative text-white/70 text-lg font-mono">
                 <span className="text-cyan-400">&lt;</span>
-                Explore the exciting events at TECHMITI'25
+                Explore the exciting events at 
+                <span class="text-1xl font-bold ml-2 group inline-block">
+                <span class="bg-gradient-to-r from-[#4facfe] via-[#6a75f7] to-[#00f2fe] bg-clip-text text-transparent group-hover:bg-gradient-to-r group-hover:from-white group-hover:via-white group-hover:to-white transition-all duration-500">Tech</span>
+                <span class="bg-gradient-to-r from-[#4facfe] via-[#6a75f7] to-[#00f2fe] bg-clip-text text-transparent group-hover:bg-gradient-to-r group-hover:from-[#FFD700] group-hover:via-[#FFA500] group-hover:to-[#FF8C00] transition-all duration-500">MIT</span>
+                <span class="bg-gradient-to-r from-[#4facfe] via-[#6a75f7] to-[#00f2fe] bg-clip-text text-transparent group-hover:bg-gradient-to-r group-hover:from-white group-hover:via-white group-hover:to-white transition-all duration-500">i'25</span>
+                </span>
                 <span className="text-cyan-400">/&gt;</span>
                 <span className="animate-blink">_</span>
               </p>
@@ -479,7 +485,7 @@ const Events = () => {
                           e.stopPropagation();
                           navigate(`/register/${event.id}`);
                         }}
-                        className="flex-1 flex items-center justify-center gap-2 bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-600 hover:to-blue-600 text-white py-2 rounded-lg transition-all duration-300 group-hover:shadow-lg group-hover:shadow-cyan-500/20"
+                        className="flex-1 flex items-center justify-center gap-2 bg-gradient-to-r from-cyan-500 to-blue-500 hover:bg-gradient-to-r hover:from-purple-400 hover:via-pink-500 hover:to-cyan-400 text-white py-2 rounded-lg transition-all duration-300 group-hover:shadow-lg group-hover:shadow-cyan-500/20"
                       >
                         <ExternalLink
                           size={18}
@@ -638,7 +644,7 @@ const Events = () => {
                       e.stopPropagation();
                       navigate(`/register/${selectedEvent.id}`);
                     }}
-                    className="px-3 py-1.5 sm:px-4 sm:py-2 rounded-lg bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-600 hover:to-blue-600 text-white transition-all duration-300 flex items-center justify-center gap-1.5 sm:gap-2 text-sm sm:text-base"
+                    className="px-3 py-1.5 sm:px-4 sm:py-2 rounded-lg bg-gradient-to-r from-cyan-500 to-blue-500 hover:bg-gradient-to-r hover:from-purple-400 hover:via-pink-500 hover:to-cyan-400 text-white transition-all duration-300 flex items-center justify-center gap-1.5 sm:gap-2 text-sm sm:text-base"
                   >
                     <ExternalLink size={16} className="sm:w-5 sm:h-5" />
                     <span>Register Now</span>
