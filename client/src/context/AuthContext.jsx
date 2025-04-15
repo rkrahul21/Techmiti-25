@@ -1,5 +1,6 @@
 import React, { createContext, useContext, useState, useEffect } from "react";
 import axios from "axios";
+import { url } from "@/utils";
 
 const AuthContext = createContext();
 
@@ -28,10 +29,13 @@ export function AuthProvider({ children }) {
   const login = async (email, password) => {
     try {
       const response = await axios.post(
-        "http://localhost:3004/api/user/login",
+        `${url}/user/login`,
         {
           email,
           password,
+        },
+        {
+          withCredentials: true, // Include credentials for CORS requests
         }
       );
 
@@ -61,7 +65,7 @@ export function AuthProvider({ children }) {
     try {
       // Call logout API
       await axios.post(
-        "http://localhost:3004/api/user/logout",
+        `${url}/user/logout`,
         {},
         {
           headers: { Authorization: `Bearer ${token}` },

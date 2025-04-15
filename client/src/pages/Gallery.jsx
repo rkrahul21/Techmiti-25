@@ -1,7 +1,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { Image } from "lucide-react";
-import GlimpseData from "../data/GlimpseData";
+import GlimpseData from "../constant/GlimpseData";
 
 const Gallery = () => {
   return (

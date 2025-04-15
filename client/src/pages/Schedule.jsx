@@ -87,8 +87,9 @@ const Schedule = () => {
 
   const handleDownload = () => {
     window.open(
-      "https://drive.google.com/file/d/1c2hxvvyRGOY_v1XBHmGgf1PPgaBTGGMN/view?usp=drivesdk",
-      "_blank"
+      // "https://drive.google.com/file/d/1c2hxvvyRGOY_v1XBHmGgf1PPgaBTGGMN/view?usp=drivesdk",
+      "/schedule"
+      // "_blank"
     );
   };
 
@@ -182,15 +183,16 @@ const Schedule = () => {
             </button>
           </motion.div>
         </motion.div>
+       
 
         {/* Day Selection Tabs - Single Row */}
-        <motion.div
+        {/* <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
           className="grid grid-cols-3 gap-2 md:gap-4 mb-8 md:mb-12 max-w-3xl mx-auto px-2 md:px-4"
-        >
-          {Object.keys(scheduleData).map((day, index) => (
+        > */}
+          {/* {Object.keys(scheduleData).map((day, index) => (
             <motion.button
               key={day}
               onClick={() => setSelectedDay(day)}
@@ -201,23 +203,23 @@ const Schedule = () => {
                   ? "bg-gradient-to-r from-purple-600/40 to-cyan-500/40 border-purple-500/50 shadow-lg shadow-purple-500/20"
                   : "bg-purple-900/20 border-transparent hover:border-purple-500/30 hover:bg-purple-900/30"
               }`}
-            >
+            > */}
               {/* Technical decorative elements */}
-              <div className="absolute top-0 left-0 w-full h-full">
+              {/* <div className="absolute top-0 left-0 w-full h-full">
                 <div className="absolute top-1 left-1 w-1 h-1 md:w-2 md:h-2 rounded-full bg-cyan-400/30"></div>
                 <div className="absolute top-1 right-1 w-1 h-1 md:w-2 md:h-2 rounded-full bg-purple-400/30"></div>
                 <div className="absolute bottom-1 left-1 w-1 h-1 md:w-2 md:h-2 rounded-full bg-purple-400/30"></div>
                 <div className="absolute bottom-1 right-1 w-1 h-1 md:w-2 md:h-2 rounded-full bg-cyan-400/30"></div>
-              </div>
+              </div> */}
 
               {/* Progress bar */}
-              <div
+              {/* <div
                 className="absolute top-0 left-0 w-full h-0.5 md:h-1 bg-gradient-to-r from-purple-500 to-cyan-500 opacity-0 transition-opacity duration-300"
                 style={{ opacity: selectedDay === day ? 1 : 0 }}
-              />
+              /> */}
 
               {/* Content */}
-              <div className="relative space-y-1 md:space-y-2">
+              {/* <div className="relative space-y-1 md:space-y-2">
                 <div className="flex items-center justify-between">
                   <div className="text-base md:text-xl font-bold bg-gradient-to-r from-purple-400 to-cyan-400 bg-clip-text text-transparent flex items-center font-mono">
                     <span className="mr-1 md:mr-2">&lt;</span>
@@ -252,13 +254,13 @@ const Schedule = () => {
                     )}
                   </div>
                 </div>
-              </div>
-            </motion.button>
+              </div> */}
+            {/* </motion.button>
           ))}
-        </motion.div>
+        </motion.div> */}
 
         {/* Event Cards */}
-        <motion.div
+        {/* <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.8, delay: 0.4 }}
@@ -305,7 +307,11 @@ const Schedule = () => {
               </div>
             </motion.div>
           ))}
-        </motion.div>
+        </motion.div> */}
+
+        <div className="text-center font-semibold text-3xl mb-8 md:mb-12">
+          Visit Again .....
+        </div>
       </div>
     </div>
   );

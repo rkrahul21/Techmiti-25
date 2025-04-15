@@ -2,8 +2,10 @@ import React from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
-import events from "../data/events";
+import events from "../constant/events";
 import { useAuth } from "../context/AuthContext";
+import { url } from "@/utils";
+
 
 const RegistrationForm = () => {
   const { eventId } = useParams();
@@ -81,7 +83,7 @@ const RegistrationForm = () => {
       );
 
       const response = await axios.post(
-        "http://localhost:3004/api/user/team/create",
+       ` ${url}/user/team/create`,
         {
           team_name: formData.teamName,
           team_leader_id: formData.teamLeaderId,

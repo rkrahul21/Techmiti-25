@@ -1,7 +1,7 @@
 import React from "react";
 import { useParams, Link } from "react-router-dom";
 import { useEffect } from "react";
-import events from "../data/events";
+import events from "../constant/events";
 import { CheckCircle } from "lucide-react";
 
 const RegistrationSuccess = () => {

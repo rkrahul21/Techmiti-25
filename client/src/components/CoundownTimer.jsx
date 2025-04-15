@@ -1,8 +1,11 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import { Button } from "./ui/button";
+import { useNavigate } from "react-router-dom";
 
 export default function CountdownTimer() {
+
+  const navigate = useNavigate();
   const [timeLeft, setTimeLeft] = useState({
     days: 0,
     hours: 0,
@@ -91,7 +94,7 @@ export default function CountdownTimer() {
 
             {/* Action Buttons */}
             <div className="mt-3 sm:mt-4 flex flex-col sm:flex-row justify-center items-center gap-1.5 sm:gap-2 md:gap-3">
-              <Button className="w-full sm:w-auto text-[10px] sm:text-xs md:text-sm px-2 sm:px-3 md:px-4 py-1 sm:py-1.5 md:py-2 bg-gradient-to-r from-[#FF3CAC] via-[#784BA0] to-[#2B86C5] hover:from-[#2B86C5] hover:via-[#784BA0] hover:to-[#FF3CAC] shadow-lg hover:shadow-[#FF3CAC]/30 transition-all duration-500 transform hover:scale-105 relative group overflow-hidden rounded-lg border-2 border-transparent hover:border-white/20">
+              <Button onClick={() => navigate("/event")}  className="w-full sm:w-auto text-[10px] sm:text-xs md:text-sm px-2 sm:px-3 md:px-4 py-1 sm:py-1.5 md:py-2 bg-gradient-to-r from-[#FF3CAC] via-[#784BA0] to-[#2B86C5] hover:from-[#2B86C5] hover:via-[#784BA0] hover:to-[#FF3CAC] shadow-lg hover:shadow-[#FF3CAC]/30 transition-all duration-500 transform hover:scale-105 relative group overflow-hidden rounded-lg border-2 border-transparent hover:border-white/20">
                 <span className="absolute inset-0 bg-gradient-to-r from-white/20 to-white/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></span>
                 <span className="absolute inset-0 bg-gradient-to-r from-[#FF3CAC]/20 to-[#2B86C5]/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></span>
                 <span className="relative z-10 flex items-center justify-center font-bold tracking-wide">
@@ -113,6 +116,7 @@ export default function CountdownTimer() {
                 </span>
               </Button>
               <Button
+                onClick={() => navigate("/register")}
                 variant="outline"
                 className="w-full sm:w-auto text-[10px] sm:text-xs md:text-sm px-2 sm:px-3 md:px-4 py-1 sm:py-1.5 md:py-2 border-2 border-[#00F5A0] text-[#00F5A0] hover:bg-[#00F5A0]/10 shadow-lg hover:shadow-[#00F5A0]/30 transition-all duration-500 transform hover:scale-105 relative group overflow-hidden rounded-lg hover:border-[#00F5A0]/80"
               >

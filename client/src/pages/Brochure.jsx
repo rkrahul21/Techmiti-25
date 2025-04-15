@@ -4,11 +4,21 @@ import { FileText } from "lucide-react";
 
 const Brochure = () => {
   const [isHovered, setIsHovered] = useState(false);
+  const [isHoveredCaRulebook, setIsHoveredCaRulebook] = useState(false);
 
   const handleDownload = () => {
     window.open(
-      "https://drive.google.com/file/d/1c2hxvvyRGOY_v1XBHmGgf1PPgaBTGGMN/view",
+      // "https://drive.google.com/file/d/1c2hxvvyRGOY_v1XBHmGgf1PPgaBTGGMN/view",
+      // "_blank"
+      "/"
+    );
+  };
+
+  const handleDownloadCaRulebook = () => {
+    window.open(
+      "https://drive.google.com/file/d/1BHlCLNN5PXBU7wC0gSR--cuc_rR_T5vd/view?usp=sharing",
       "_blank"
+    
     );
   };
 
@@ -100,7 +110,65 @@ const Brochure = () => {
             )}
           </span>
         </motion.div>
+
+        {/* second button CA Rulebook */}
+        <motion.div
+          whileHover={{ scale: 1.05 }}
+          className={`inline-flex items-center justify-center px-8 py-3 rounded-full backdrop-blur-sm cursor-pointer transition-all duration-300 min-w-[180px] relative group ${
+            isHoveredCaRulebook
+              ? "bg-gradient-to-r from-purple-600 to-cyan-500 shadow-lg shadow-purple-500/30"
+              : "bg-gradient-to-r from-purple-600/30 to-cyan-500/30"
+          }`}
+          onMouseEnter={() => setIsHoveredCaRulebook(true)}
+          onMouseLeave={() => setIsHoveredCaRulebook(false)}
+          onClick={handleDownloadCaRulebook}
+        >
+          {/* Decorative dots */}
+          <div className="absolute left-2 top-1/2 -translate-y-1/2 w-1.5 h-1.5 rounded-full bg-cyan-400/50"></div>
+          <div className="absolute right-2 top-1/2 -translate-y-1/2 w-1.5 h-1.5 rounded-full bg-purple-400/50"></div>
+
+          <span
+            className={`text-lg font-medium transition-all duration-300 inline-flex items-center justify-center gap-2 ${
+              isHoveredCaRulebook
+                ? "text-white"
+                : "bg-gradient-to-r from-purple-400 to-cyan-400 bg-clip-text text-transparent"
+            }`}
+          >
+            {isHoveredCaRulebook ? (
+              <>
+                <span className="font-mono">&lt;</span>
+                Download CA RuleBook
+                <span className="font-mono">/&gt;</span>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="h-5 w-5 animate-bounce"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"
+                  />
+                </svg>
+              </>
+            ) : (
+              <div className="flex items-center justify-center w-full">
+                <FileText className="h-5 w-5 mr-2" />
+                <span className="font-mono">&lt;</span>
+                CA RuleBook
+                <span className="font-mono">/&gt;</span>
+              </div>
+            )}
+          </span>
+        </motion.div>
       </div>
+
+       
+
+
     </div>
   );
 };

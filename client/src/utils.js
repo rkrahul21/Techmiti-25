@@ -1,0 +1,1 @@
+export const url="http://techmiti.in:80/api"

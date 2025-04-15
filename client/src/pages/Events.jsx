@@ -20,7 +20,7 @@ import {
   FileText,
   X,
 } from "lucide-react";
-import events from "../data/events";
+import events from "../constant/events";
 
 const Events = () => {
   const [currentCategory, setCurrentCategory] = useState("all");

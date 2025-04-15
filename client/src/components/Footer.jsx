@@ -270,8 +270,9 @@ function Footer() {
     { name: "EVENTS", path: "/event" },
     { name: "GLIMPSE", path: "/gallery" },
     { name: "BROCHURE", path: "/brochure" },
-    { name: "CA RULEBOOK", path: "/ca-rulebook" },
+    { name: "CA RULEBOOK", path: "/brochure" },
     { name: "REGISTER", path: "/register" },
+    { name: "SPONSORS", path: "/sponsors" },
   ];
 
   const socialLinks = [
@@ -359,10 +360,10 @@ function Footer() {
             </LogoInner>
           </LogoWrapper>
           <Title>
-          <span class="text-2xl font-bold ml-2 group">
-          <span class="bg-gradient-to-r from-[#4facfe] via-[#6a75f7] to-[#00f2fe] bg-clip-text text-transparent group-hover:bg-gradient-to-r group-hover:from-white group-hover:via-white group-hover:to-white transition-all duration-500">Tech</span>
-          <span class="bg-gradient-to-r from-[#4facfe] via-[#6a75f7] to-[#00f2fe] bg-clip-text text-transparent group-hover:bg-gradient-to-r group-hover:from-[#FFD700] group-hover:via-[#FFA500] group-hover:to-[#FF8C00] transition-all duration-500">MIT</span>
-          <span class="bg-gradient-to-r from-[#4facfe] via-[#6a75f7] to-[#00f2fe] bg-clip-text text-transparent group-hover:bg-gradient-to-r group-hover:from-white group-hover:via-white group-hover:to-white transition-all duration-500">i'25</span>
+          <span className="text-2xl font-bold ml-2 group">
+          <span className="bg-gradient-to-r from-[#4facfe] via-[#6a75f7] to-[#00f2fe] bg-clip-text text-transparent group-hover:bg-gradient-to-r group-hover:from-white group-hover:via-white group-hover:to-white transition-all duration-500">Tech</span>
+          <span className="bg-gradient-to-r from-[#4facfe] via-[#6a75f7] to-[#00f2fe] bg-clip-text text-transparent group-hover:bg-gradient-to-r group-hover:from-[#FFD700] group-hover:via-[#FFA500] group-hover:to-[#FF8C00] transition-all duration-500">MIT</span>
+          <span className="bg-gradient-to-r from-[#4facfe] via-[#6a75f7] to-[#00f2fe] bg-clip-text text-transparent group-hover:bg-gradient-to-r group-hover:from-white group-hover:via-white group-hover:to-white transition-all duration-500">i'25</span>
           </span>
           </Title>
         </LogoContainer>
@@ -376,9 +377,7 @@ function Footer() {
               {link.name}
             </NavLink>
           ))}
-          <NavLink onClick={handleSponsorsClick}>
-            SPONSORS
-          </NavLink>
+          
         </Navigation>
 
         <SocialLinks>
